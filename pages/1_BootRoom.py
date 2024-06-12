@@ -5,7 +5,7 @@ import pandas as pd
 import statsmodels.api as sm
 import statsmodels.formula.api as smf
 from matplotlib import colors
-from itscalledsoccer.client import AmericanSoccerAnalysis
+#from itscalledsoccer.client import AmericanSoccerAnalysis
 import os
 import pathlib
 from scipy import stats
