@@ -9,3 +9,4 @@ streamlit-ace
 streamlit-metrics
 altair
 plotly
+cachecontrol
