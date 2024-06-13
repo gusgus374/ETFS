@@ -75,7 +75,7 @@ if uploaded_file is not None:
         coach_message.write("We're getting there! But I think we can do better a little better:")
 if uploaded_file is not None:
     with st.echo():
-        dataframe = dataframe.drop(['Date','Session Title','Split Name','Tags','Hr Load','Time In Red Zone (min)','Hr Max (bpm)'],axis=1)
+        dataframe = dataframe.drop(['Date','Split Name','Tags','Hr Load','Time In Red Zone (min)','Hr Max (bpm)'],axis=1)
         st.dataframe(dataframe)
     coach_message = st.chat_message(name="Coach Gus",avatar="./resources/profile_coachGus.JPG")
     coach_message.write("I'm interested in the relationship between distance covered and sprint distance. Here's the code to create the graph:")
@@ -87,43 +87,48 @@ if uploaded_file is not None:
         chart = alt.Chart(dataframe).mark_circle().encode(
             x='Distance (km)',
             y='Sprint Distance (m)',
-            size='sprint/total distance',
-            color='Player Name').interactive()
+            size=alt.Size('sprint/total distance',legend=None),
+            color=alt.Color('Player Name',legend=None),
+            tooltip=["Player Name","Session Title"]).properties(height=500).interactive()
         '''
         ## Sprint Distance vs Total Distance
         '''
-        st.altair_chart(chart, theme="streamlit", use_container_width=True)
+        with st.expander(label="Sprint Distance vs Total Distance Graph", expanded=True):
+            st.altair_chart(chart, theme="streamlit", use_container_width=True)
     coach_message = st.chat_message(name="Coach Gus",avatar="./resources/profile_coachGus.JPG")
     coach_message.write("Lastly, let's look at max acceleration, max deceleration, and top speed for this game:")
 if uploaded_file is not None:
     chart = alt.Chart(dataframe).mark_circle().encode(
-        x='Top Speed (m/s)',
+        x='Max Deceleration (m/s/s)',
         y='Max Acceleration (m/s/s)',
-        size='Max Deceleration (m/s/s)',
-        color='Player Name').interactive()
+        size=alt.Size('Top Speed (m/s)',legend=None),
+        color=alt.Color('Player Name',legend=None),
+        tooltip=["Player Name", "Session Title"]).properties(height=500).interactive()
     '''
     ## Max Acceleration vs Deceleration
     '''
-    st.altair_chart(chart, theme="streamlit", use_container_width=True)
+    with st.expander(label="Max Acceleration vs Max Deceleartion Graph", expanded=True):
+        st.altair_chart(chart, theme="streamlit", use_container_width=True)
 st.divider()
-uploaded_file = st.file_uploader("Choose a file again")
+#uploaded_file = st.file_uploader("Choose a file again")
 if uploaded_file is not None:
-    dataframe = pd.read_csv(uploaded_file)
-    with st.expander(label="Collapse/Expand",expanded=True):
+    #dataframe = pd.read_csv(uploaded_file)
+    with st.expander(label="Collapse/Expand",expanded=False):
             st.write(dataframe)
-    dataframe = dataframe.loc[dataframe['Split Name'] == 'game']
-    dataframe = dataframe.drop(['Date','Split Name','Tags','Hr Load','Time In Red Zone (min)','Hr Max (bpm)'],axis=1)
+    #dataframe = dataframe.loc[dataframe['Split Name'] == 'game']
+    #dataframe = dataframe.drop(['Date','Split Name','Tags','Hr Load','Time In Red Zone (min)','Hr Max (bpm)'],axis=1)
     with st.sidebar:
          mycol = dataframe.columns.tolist()
          xvar = st.selectbox("Pick Variable #1",mycol)
-         yvar = st.selectbox("Pick Variable #2",mycol)
-         dotsize = st.selectbox("Size of data point",mycol)
-         dotcolor = st.selectbox("Color of data point",mycol)
+         yvar = st.selectbox("Pick Variable #2",mycol,5)
+         dotsize = st.selectbox("Size of data point",mycol,6)
+         dotcolor = st.selectbox("Color of data point",mycol,1)
     chart = alt.Chart(dataframe).mark_circle().encode(
             x=xvar,
             y=yvar,
             size=alt.Size(dotsize, legend=None),
-            color=alt.Color(dotcolor,legend=None)).interactive()
+            color=alt.Color(dotcolor,legend=None),
+            tooltip=["Player Name","Session Title",xvar,yvar,dotsize,dotcolor]).properties(height=500).interactive()
     '''
     ## Your Graph
     '''

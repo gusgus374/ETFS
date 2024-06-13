@@ -18,9 +18,10 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 st.logo("./resources/footyLab_v2_96_NB.png",link="https://datarook.com/")
+st.image(image="./resources/ETSF_logo.png",width=60)
 st.title("Welcome to the East Tennessee Freedom Schools footyLab!")
 
-#st.image(image="./resources/profile_coachGus.JPG",width=600)
+
 
 st.header("This is the home page of our currently-under-development app!")
 
@@ -97,3 +98,20 @@ with app:
         right = st.container(border=True)
         with right:
              exec(code)
+st.divider()
+st.header("Links and Resources")
+col1, col2 = st.columns(2)
+with col1:
+      #st.subheader("Streamlit ~~Docs~~ Spellbook")
+      st.page_link("https://docs.streamlit.io/develop/api-reference", label="Click me to read about Streamlit ~~methods~~ spells", icon="🪄")
+      uploaded_file = os.path.join(str(pathlib.Path().resolve()), './data/last30days_GPS.csv')
+      with open(uploaded_file) as f:
+            btn = st.download_button(
+                  label="Download Last 30 Days GPS Data",
+                  data = f,
+                  file_name="gps_data.csv",
+                  mime="text/csv"
+                )
+with col2:
+      st.page_link("https://oneknoxcollective.notion.site/ETFS-Soccer-Scientists-8d132bcda49c4385b0a5c41adef5ebb8?pvs=4", label="ETFS Soccer Scientist Home Page", icon="🏡")
+      

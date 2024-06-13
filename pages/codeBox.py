@@ -37,15 +37,14 @@ with st.echo():
 
 editor = st.container(border=True)
 INITIAL_CODE = """# write code below!
-
-chart = alt.Chart(game_data).mark_circle().encode(
-            x=variable_x,
-            y=variable_y,
-            size=alt.Size(variable_size,legend=None),
-            color=alt.Color('Player Name',legend=None),
-            tooltip=["Player Name","Session Title",]).properties(height=500).interactive()
-
-st.altair_chart(chart, theme="streamlit", use_container_width=True)
+if uploaded_file is not None:
+    chart = alt.Chart(game_data).mark_circle().encode(
+        x=variable_x,
+        y=variable_y,
+        size=alt.Size(variable_size,legend=None),
+        color=alt.Color('Player Name',legend=None),
+        tooltip=["Player Name","Session Title",]).properties(height=500).interactive()
+    st.altair_chart(chart, theme="streamlit", use_container_width=True)
 """
 
 with editor:
@@ -66,5 +65,4 @@ with editor:
 st.header("*Your Result:*")
 app = st.container(border=True)
 with app:
-    if uploaded_file is not None:
-         exec(code)
+    exec(code)
