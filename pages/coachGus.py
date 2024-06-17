@@ -40,3 +40,20 @@ with col1:
         st.caption("Hint: make sure to click the 'Voltage' checkbox then drag and drop the red and blue particels around")
 st.subheader("Soccer and Science.")
 st.header("What about that data thing? What *is* data?")
+
+st.divider()
+st.header("Links and Resources")
+col1, col2 = st.columns(2)
+with col1:
+      #st.subheader("Streamlit ~~Docs~~ Spellbook")
+      st.page_link("https://docs.streamlit.io/develop/api-reference", label="Click me to read about Streamlit ~~methods~~ spells", icon="🪄")
+      uploaded_file = os.path.join(str(pathlib.Path().resolve()), './data/last30days_GPS.csv')
+      with open(uploaded_file) as f:
+            btn = st.download_button(
+                  label="Download Last 30 Days GPS Data",
+                  data = f,
+                  file_name="gps_data.csv",
+                  mime="text/csv"
+                )
+with col2:
+      st.page_link("https://oneknoxcollective.notion.site/ETFS-Soccer-Scientists-8d132bcda49c4385b0a5c41adef5ebb8?pvs=4", label="ETFS Soccer Scientist Home Page", icon="🏡")

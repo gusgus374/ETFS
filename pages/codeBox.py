@@ -6,6 +6,8 @@ from streamlit_ace import st_ace
 import pandas as pd
 import numpy as np
 import altair as alt
+import os
+import pathlib
 st.logo("./resources/footyLab_v2_96_NB.png",link="https://datarook.com/")
 
 st.set_page_config(
@@ -26,17 +28,22 @@ with st.echo():
         # use the Pandas read_csv method to read the gps_data and turn into a dataframe
         all_data = pd.read_csv(uploaded_file)
         # keep only the rows were the column 'Split Name' has a value equal to 'all'
-        game_data = all_data.loc[all_data['Split Name'] == 'all']
+        game_data = all_data.loc[all_data['Split Name'] == "game"]
+        #game_data = game_data.loc[game_data['Tags'] == 'game']
         game_data = game_data.set_index('Player Name', drop=False)
+        #game_data["day"] = game_data["Date"] - 45150
+        #game_data = game_data.loc[game_data["day"] > 0]
         with st.expander(label="View Your Data",expanded=False):
             #display the uploaded data
             st.write(game_data)
         variable_x = st.selectbox("Pick Your X Variable!",game_data.columns.to_list(),1)
         variable_y = st.selectbox("Pick Your Y Variable!",game_data.columns.to_list(),8)
         variable_size = st.selectbox("Pick Your Size Variable!",game_data.columns.to_list(),9)
-
+pd.Series()
 editor = st.container(border=True)
 INITIAL_CODE = """# write code below!
+import streamlit as st
+import altair as alt
 if uploaded_file is not None:
     chart = alt.Chart(game_data).mark_circle().encode(
         x=variable_x,
@@ -66,3 +73,25 @@ st.header("*Your Result:*")
 app = st.container(border=True)
 with app:
     exec(code)
+    btn = st.download_button(
+                  label="SAVE YOUR CODE!",
+                  data = code,
+                  file_name="from_codeBox.py"
+    )
+
+st.divider()
+st.header("Links and Resources")
+col1, col2 = st.columns(2)
+with col1:
+      #st.subheader("Streamlit ~~Docs~~ Spellbook")
+      st.page_link("https://docs.streamlit.io/develop/api-reference", label="Click me to read about Streamlit ~~methods~~ spells", icon="🪄")
+      uploaded_file = os.path.join(str(pathlib.Path().resolve()), './data/last30days_GPS.csv')
+      with open(uploaded_file) as f:
+            btn = st.download_button(
+                  label="Download Last 30 Days GPS Data",
+                  data = f,
+                  file_name="gps_data.csv",
+                  mime="text/csv"
+                )
+with col2:
+      st.page_link("https://oneknoxcollective.notion.site/ETFS-Soccer-Scientists-8d132bcda49c4385b0a5c41adef5ebb8?pvs=4", label="ETFS Soccer Scientist Home Page", icon="🏡")
