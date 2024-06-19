@@ -13,7 +13,11 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="collapsed",
 )
-
+st.sidebar.page_link("FootyLab.py", label=":seedling: Home Page ")
+st.sidebar.page_link("pages/1_BootRoom.py", label=":star: Boot Room ")
+st.sidebar.page_link("pages/codeBox.py", label=":computer: CODE BOX ")
+st.sidebar.page_link("pages/coachGus.py", label=":pushpin: Coach's Examples ")
+st.sidebar.page_link("pages/Class_Page.py", label=":bar_chart: Class Page ")
 st.logo("./resources/footyLab_v2_96_NB.png",link="https://datarook.com/")
 st.title("Your Brain, Electricity, Some Stuff Called 'Myelin', and Getting Better at Stuff.")
 col1, col2 = st.columns(2)

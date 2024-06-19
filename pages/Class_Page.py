@@ -6,7 +6,25 @@ import altair as alt
 #import time 
 import os
 import pathlib
+st.set_page_config(
+    page_title="footyLab Boot Room",
+    page_icon="./resources/DR_favicon.png",
+    layout="wide",
+    initial_sidebar_state="collapsed",
+    menu_items={
+        'Get Help': 'https://datarook.com/',
+        'Report a bug': "https://datarook.com/#copyright",
+        'About': "# This is a version of FootyLab created for the 2024 East Tennessee Freedom School. Contact gus@datarook.com to learn more."
+    }
+)
+
+st.sidebar.page_link("FootyLab.py", label=":seedling: Home Page ")
+st.sidebar.page_link("pages/1_BootRoom.py", label=":star: Boot Room ")
+st.sidebar.page_link("pages/codeBox.py", label=":computer: CODE BOX ")
+st.sidebar.page_link("pages/coachGus.py", label=":pushpin: Coach's Examples ")
+st.sidebar.page_link("pages/Class_Page.py", label=":bar_chart: Class Page ")
 st.logo("./resources/footyLab_v2_96_NB.png",link="https://datarook.com/")
+
 def plotbox(df):
     domain = ['Green', "Blue", "Red"]
     range_ = ['chartreuse', 'blue', 'red']
