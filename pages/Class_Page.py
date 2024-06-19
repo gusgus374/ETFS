@@ -48,7 +48,7 @@ def plotbox(df):
     #st.altair_chart(c, use_container_width=True)
 
     st.altair_chart(f + e + d, use_container_width=True)
-st.title("NEW TEAMS FOR TUESDAY JUNE 18th")
+st.title("NEW TEAMS FOR TUESDAY JUNE 18th.")
 
 #Power Play
 blueTeam1 = ["Azy'rion","AyMarri","Ayden","Dalton","Jamerson","Garrett","Jamiya","Jarius","Zane","Raye","Nevaeh","Ronnie"]

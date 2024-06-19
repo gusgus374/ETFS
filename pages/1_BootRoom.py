@@ -23,7 +23,7 @@ st.set_page_config(
     menu_items={
         'Get Help': 'https://datarook.com/',
         'Report a bug': "https://datarook.com/#copyright",
-        'About': "# This is a version of FootyLab created for the 2024 East Tennessee Freedom School. Contact gus@datarook.com to learn more"
+        'About': "# This is a version of FootyLab created for the 2024 East Tennessee Freedom School. Contact gus@datarook.com to learn more."
     }
 )
 st.logo("./resources/footyLab_v2_96_NB.png",link="https://datarook.com/")

@@ -15,7 +15,7 @@ st.set_page_config(
 )
 
 st.logo("./resources/footyLab_v2_96_NB.png",link="https://datarook.com/")
-st.title("Your Brain, Electricity, Some Stuff Called 'Myelin', and Getting Better at Stuff")
+st.title("Your Brain, Electricity, Some Stuff Called 'Myelin', and Getting Better at Stuff.")
 col1, col2 = st.columns(2)
 with col2:
         st.image(image="./resources/myelin_sheath.jpg",width=400)

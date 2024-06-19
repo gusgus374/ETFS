@@ -17,7 +17,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-st.title("FootyLab codeBox")
+st.title("footyLab codeBox")
 
 
 coach_message = st.chat_message(name="Coach Gus",avatar="./resources/profile_coachGus.JPG")

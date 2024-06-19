@@ -17,13 +17,15 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
 )
-st.logo("./resources/footyLab_v2_96_NB.png",link="https://datarook.com/")
+
+st.logo("./resources/footyLab_v2_96_NB.png")
+
 st.image(image="./resources/ETSF_logo.png",width=60)
 st.title("Welcome to the East Tennessee Freedom Schools footyLab!")
 
 
 
-st.header("This is the home page of our currently-under-development app!")
+st.header("This is the home page of our app!")
 
 #st.text("This is the home page of our currently-under-development app!")
 st.text("The goal is for us to explore the data we have been collecting on the soccer field right here in the footyLab.")
