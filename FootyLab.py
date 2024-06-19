@@ -62,11 +62,9 @@ coach_message = st.chat_message(name="Coach Gus",avatar="./resources/profile_coa
 coach_message.write("Below you'll find the *codeBox* where you can try coding yourself!")
 
 
-st.subheader("~~Cast some spells~~ Write some python code yourself!")
-editor, app= st.columns(2)
-INITIAL_CODE = """# write code below!
 
-#try changing the title's name:
+editor, app= st.columns(2)
+INITIAL_CODE = """#try changing the title's name:
 st.title("Hello, FootyLab!")
 
 #see what happens when you alter the code below:
@@ -74,10 +72,13 @@ some_number = 2
 some_text = "I'm a string!"
 
 st.write(some_number)
-st.write(some_text)
+
+st.header(some_text)
+
 st.write(some_number + some_number)
 """
 with editor:
+    st.subheader("~~Cast some spells~~ Write some python code yourself!")
     left = st.container(border=True)
     with left:
          code = st_ace(
@@ -97,6 +98,7 @@ with editor:
 st.divider()
 
 with app:
+        st.subheader("Your Results :point_down:")
         right = st.container(border=True)
         with right:
              exec(code)

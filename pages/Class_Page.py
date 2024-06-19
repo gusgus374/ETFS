@@ -6,7 +6,7 @@ import altair as alt
 #import time 
 import os
 import pathlib
-
+st.logo("./resources/footyLab_v2_96_NB.png",link="https://datarook.com/")
 def plotbox(df):
     domain = ['Green', "Blue", "Red"]
     range_ = ['chartreuse', 'blue', 'red']
