@@ -55,7 +55,7 @@ with st.sidebar:
             seasons = ["2024","2023","2022","2021","2020","2019"]
         if league == "mlsnp":
             seasons = ["2024","2023","2022"]
-        season = st.selectbox("select season(s)",seasons,key="season")
+        season = st.selectbox("select season",seasons,key="season")
     bygame = st.checkbox("Group results by game",value=False,key="bygame")
 #st.write(st.session_state)
 #seasons = ["2023","2024"]
@@ -147,15 +147,15 @@ def loadData(season,league,bygame):
 
     
 if bygame == True:
-    #Players_by_game = loadData(st.session_state.season,st.session_state.league,st.session_state.bygame)
-    Players_by_game = loadData(season,league,bygame)
+    Players_by_game = loadData(st.session_state.season,st.session_state.league,st.session_state.bygame)
+    #Players_by_game = loadData(season,league,bygame)
     Players = None
     #st.write("by game checked!")
 if bygame == False:
     Players_by_game = None
     #st.write("by game not checked!")
-    #Players = loadData(st.session_state.season,st.session_state.league,st.session_state.bygame)
-    Players = loadData(season,league,bygame)
+    Players = loadData(st.session_state.season,st.session_state.league,st.session_state.bygame)
+    #Players = loadData(season,league,bygame)
 
 
 if bygame == True:
