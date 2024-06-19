@@ -11,3 +11,4 @@ streamlit-metrics
 altair
 plotly
 cachecontrol
+rapidfuzz
