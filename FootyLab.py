@@ -17,7 +17,7 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="collapsed",
 )
-st.write(st.get_option("client.showSidebarNavigation"))
+
 
 st.sidebar.page_link("FootyLab.py", label=":seedling: Home Page ")
 st.sidebar.page_link("pages/1_BootRoom.py", label=":star: Boot Room ")
