@@ -66,13 +66,14 @@ def loadData(season,league,bygame):
     
     if bygame == True:
         asa_client1 = AmericanSoccerAnalysis()
-        players_xG = asa_client1.get_player_xgoals(leagues=league,season_name=season,split_by_games=True)
+        players_xG = asa_client1.get_player_xgoals(leagues=league,season_name=str(season),split_by_games=True)
         players = asa_client1.get_players(leagues=league)
-        players_gAdded = asa_client1.get_player_goals_added(leagues=league,season_name=season,split_by_games=True)
-        players_gAdded_r = asa_client1.get_player_goals_added(leagues=league,season_name=season,above_replacement=True,split_by_games=True)
-        players_xPass = asa_client1.get_player_xpass(leagues=league,season_name=season,split_by_games=True)
+        players_gAdded = asa_client1.get_player_goals_added(leagues=league,season_name=str(season),split_by_games=True)
+        players_gAdded_r = asa_client1.get_player_goals_added(leagues=league,season_name=str(season),above_replacement=True,split_by_games=True)
+        players_xPass = asa_client1.get_player_xpass(leagues=league,season_name=str(season),split_by_games=True)
         teams = asa_client1.get_teams(leagues=league)
-        games = asa_client1.get_games(leagues=league,seasons=season)
+        st.dataframe(players)
+        games = asa_client1.get_games(leagues=league,seasons=str(season))
 
         games.insert(loc=4,column="Home_Team",value="")
         games.insert(loc=5,column="Away_Team",value="")
@@ -82,8 +83,8 @@ def loadData(season,league,bygame):
                     games.at[i,'Home_Team'] = rr["team_name"]
                 if (r['away_team_id'] == rr["team_id"]):
                     games.at[i,"Away_Team"] = rr["team_name"]
-
-        df5 = pd.merge(players,players_xG,how="inner",on="player_id")
+        df5 = players.drop(columns=['season_name'])
+        df5 = pd.merge(df5,players_xG,how="inner",on="player_id")
         df5 = df5.drop(columns=['general_position','minutes_played'])
         df5 = df5.merge(players_xPass, on=['player_id', 'game_id','team_id'])
         df5 = df5.drop(columns=['general_position','minutes_played'])
@@ -91,7 +92,7 @@ def loadData(season,league,bygame):
         df5 = df5.drop(columns=['general_position','minutes_played'])
         df5 = df5.merge(players_gAdded_r, on=['player_id', 'game_id','team_id'])
 
-        df5 = df5.drop(columns=['season_name'])
+        
         df5.insert(loc=4,column='team_name',value="")
         for i,r in df5.iterrows():
             for j,rr in teams.iterrows():
@@ -111,16 +112,16 @@ def loadData(season,league,bygame):
     
     if bygame == False:
         asa_client2 = AmericanSoccerAnalysis()
-        players_xG = asa_client2.get_player_xgoals(leagues=league,season_name=season)
+        players_xG = asa_client2.get_player_xgoals(leagues=league,season_name=str(season))
         players = asa_client2.get_players(leagues=league)
-        players_gAdded = asa_client2.get_player_goals_added(leagues=league,season_name=season)
-        players_gAdded_r = asa_client2.get_player_goals_added(leagues=league,season_name=season,above_replacement=True)
-        players_xPass = asa_client2.get_player_xpass(leagues=league,season_name=season)
+        players_gAdded = asa_client2.get_player_goals_added(leagues=league,season_name=str(season))
+        players_gAdded_r = asa_client2.get_player_goals_added(leagues=league,season_name=str(season),above_replacement=True)
+        players_xPass = asa_client2.get_player_xpass(leagues=league,season_name=str(season))
         teams1 = asa_client2.get_teams(leagues=league)
-        
-        df1 = pd.merge(players,players_xG,how="inner",on="player_id")
+        df1 = players.drop(columns=['season_name'])
+        df1 = pd.merge(df1,players_xG,how="inner",on="player_id")
 
-        df1 = df1.drop(columns=['season_name'])
+        
         df1.insert(loc=4,column='team_name',value="")
         for i,k in df1.iterrows():
             for j,kk in teams1.iterrows():
@@ -147,15 +148,15 @@ def loadData(season,league,bygame):
 
     
 if bygame == True:
-    Players_by_game = loadData(st.session_state.season,st.session_state.league,st.session_state.bygame)
-    #Players_by_game = loadData(season,league,bygame)
+    #Players_by_game = loadData(st.session_state.season,st.session_state.league,st.session_state.bygame)
+    Players_by_game = loadData(season,league,bygame)
     Players = None
     #st.write("by game checked!")
 if bygame == False:
     Players_by_game = None
     #st.write("by game not checked!")
-    Players = loadData(st.session_state.season,st.session_state.league,st.session_state.bygame)
-    #Players = loadData(season,league,bygame)
+    #Players = loadData(st.session_state.season,st.session_state.league,st.session_state.bygame)
+    Players = loadData(season,league,bygame)
 
 
 if bygame == True:
