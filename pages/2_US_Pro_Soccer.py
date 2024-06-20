@@ -72,7 +72,6 @@ def loadData(season,league,bygame):
         players_gAdded_r = asa_client1.get_player_goals_added(leagues=league,season_name=str(season),above_replacement=True,split_by_games=True)
         players_xPass = asa_client1.get_player_xpass(leagues=league,season_name=str(season),split_by_games=True)
         teams = asa_client1.get_teams(leagues=league)
-        st.dataframe(players)
         games = asa_client1.get_games(leagues=league,seasons=str(season))
 
         games.insert(loc=4,column="Home_Team",value="")
@@ -112,14 +111,14 @@ def loadData(season,league,bygame):
     
     if bygame == False:
         asa_client2 = AmericanSoccerAnalysis()
-        players_xG = asa_client2.get_player_xgoals(leagues=league,season_name=str(season))
+        players_xG = asa_client2.get_player_xgoals(leagues=league,season_name=str(season),split_by_teams=True)
         players = asa_client2.get_players(leagues=league)
-        players_gAdded = asa_client2.get_player_goals_added(leagues=league,season_name=str(season))
-        players_gAdded_r = asa_client2.get_player_goals_added(leagues=league,season_name=str(season),above_replacement=True)
-        players_xPass = asa_client2.get_player_xpass(leagues=league,season_name=str(season))
+        players_gAdded = asa_client2.get_player_goals_added(leagues=league,season_name=str(season),split_by_teams=True)
+        players_gAdded_r = asa_client2.get_player_goals_added(leagues=league,season_name=str(season),split_by_teams=True,above_replacement=True)
+        players_xPass = asa_client2.get_player_xpass(leagues=league,season_name=str(season),split_by_teams=True)
         teams1 = asa_client2.get_teams(leagues=league)
         df1 = players.drop(columns=['season_name'])
-        df1 = pd.merge(df1,players_xG,how="inner",on="player_id")
+        df1 = pd.merge(df1,players_xG,how="inner",on=["player_id"])
 
         
         df1.insert(loc=4,column='team_name',value="")
@@ -128,12 +127,12 @@ def loadData(season,league,bygame):
                 if (k['team_id']==kk['team_id']):
                     df1.at[i,'team_name'] = kk['team_name']
 
-        df1 = df1.drop(columns=['team_id','general_position','minutes_played'])
-        df1 = pd.merge(df1,players_xPass,how="inner",on="player_id")
-        df1 = df1.drop(columns=['team_id','general_position','minutes_played'])
-        df1 = pd.merge(df1,players_gAdded,how='inner',on='player_id')        
-        df1 = df1.drop(columns=['team_id','general_position','minutes_played'])
-        df1 = df1.merge(players_gAdded_r, on=['player_id'])
+        df1 = df1.drop(columns=['general_position','minutes_played'])
+        df1 = pd.merge(df1,players_xPass,how="inner",on=["player_id","team_id"])
+        df1 = df1.drop(columns=['general_position','minutes_played'])
+        df1 = pd.merge(df1,players_gAdded,how='inner',on=["player_id","team_id"])        
+        df1 = df1.drop(columns=['general_position','minutes_played'])
+        df1 = df1.merge(players_gAdded_r, on=["player_id","team_id"])
 
         # Create the desired columns structure
         action_types = ['Dribbling', 'Fouling', 'Interrupting', 'Passing', 'Receiving', 'Shooting']
@@ -397,8 +396,8 @@ if bygame == False:
     st.latex(r'''
         Y = mX + b
         ''')
-    variable_x = st.selectbox("$$X$$ ",summary_per_90.columns.to_list(),37)
-    variable_y = st.selectbox("$$Y$$",summary_per_90.columns.to_list(),39)
+    variable_x = st.selectbox("$$X$$ ",summary_per_90.columns.to_list(),6)
+    variable_y = st.selectbox("$$Y$$",summary_per_90.columns.to_list(),40)
     #Circle_size = st.selectbox("size of circle",summary_per_90.columns.to_list(),5)
     Circle_size = "goals_added_above_replacement_per90"
 
@@ -428,8 +427,8 @@ if bygame == False:
             Y = mX + b
             ''')
 
-    variable_X = st.selectbox("$$X$$ = Dependent Variable/X-Axis",summary_per_90.columns.to_list(),37)
-    variable_Y = st.selectbox("$$Y$$ = Independent Variable Variable/Y-Axis",summary_per_90.columns.to_list(),39)
+    variable_X = st.selectbox("$$X$$ = Dependent Variable/X-Axis",summary_per_90.columns.to_list(),6)
+    variable_Y = st.selectbox("$$Y$$ = Independent Variable Variable/Y-Axis",summary_per_90.columns.to_list(),40)
     #Circle_Size = st.selectbox("Circle Size",summary_per_90.columns.to_list(),5)
     Circle_Size = "goals_added_above_replacement_per90"
 
