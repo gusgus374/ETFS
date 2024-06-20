@@ -4,7 +4,7 @@ numpy
 pandas
 mplsoccer
 statsmodels
-itscalledsoccer
+itscalledsoccer==1.1.0
 scipy
 streamlit-ace
 streamlit-metrics
