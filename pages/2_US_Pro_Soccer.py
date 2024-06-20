@@ -62,17 +62,15 @@ with st.sidebar:
 #st.write(season,league,bygame)
 @st.cache_data
 def loadData(season,league,bygame):
-    
-    
+    asa_client = AmericanSoccerAnalysis()
     if bygame == True:
-        asa_client1 = AmericanSoccerAnalysis()
-        players_xG = asa_client1.get_player_xgoals(leagues=league,season_name=str(season),split_by_games=True)
-        players = asa_client1.get_players(leagues=league)
-        players_gAdded = asa_client1.get_player_goals_added(leagues=league,season_name=str(season),split_by_games=True)
-        players_gAdded_r = asa_client1.get_player_goals_added(leagues=league,season_name=str(season),above_replacement=True,split_by_games=True)
-        players_xPass = asa_client1.get_player_xpass(leagues=league,season_name=str(season),split_by_games=True)
-        teams = asa_client1.get_teams(leagues=league)
-        games = asa_client1.get_games(leagues=league,seasons=str(season))
+        players_xG = asa_client.get_player_xgoals(leagues=league,season_name=str(season),split_by_games=True)
+        players = asa_client.get_players(leagues=league)
+        players_gAdded = asa_client.get_player_goals_added(leagues=league,season_name=str(season),split_by_games=True)
+        players_gAdded_r = asa_client.get_player_goals_added(leagues=league,season_name=str(season),above_replacement=True,split_by_games=True)
+        players_xPass = asa_client.get_player_xpass(leagues=league,season_name=str(season),split_by_games=True)
+        teams = asa_client.get_teams(leagues=league)
+        games = asa_client.get_games(leagues=league,seasons=str(season))
 
         games.insert(loc=4,column="Home_Team",value="")
         games.insert(loc=5,column="Away_Team",value="")
@@ -110,13 +108,12 @@ def loadData(season,league,bygame):
         result = players_by_game.drop(columns=['data'])
     
     if bygame == False:
-        asa_client2 = AmericanSoccerAnalysis()
-        players_xG = asa_client2.get_player_xgoals(leagues=league,season_name=str(season),split_by_teams=True)
-        players = asa_client2.get_players(leagues=league)
-        players_gAdded = asa_client2.get_player_goals_added(leagues=league,season_name=str(season),split_by_teams=True)
-        players_gAdded_r = asa_client2.get_player_goals_added(leagues=league,season_name=str(season),split_by_teams=True,above_replacement=True)
-        players_xPass = asa_client2.get_player_xpass(leagues=league,season_name=str(season),split_by_teams=True)
-        teams1 = asa_client2.get_teams(leagues=league)
+        players_xG = asa_client.get_player_xgoals(leagues=league,season_name=str(season),split_by_teams=True)
+        players = asa_client.get_players(leagues=league)
+        players_gAdded = asa_client.get_player_goals_added(leagues=league,season_name=str(season),split_by_teams=True)
+        players_gAdded_r = asa_client.get_player_goals_added(leagues=league,season_name=str(season),split_by_teams=True,above_replacement=True)
+        players_xPass = asa_client.get_player_xpass(leagues=league,season_name=str(season),split_by_teams=True)
+        teams1 = asa_client.get_teams(leagues=league)
         df1 = players.drop(columns=['season_name'])
         df1 = pd.merge(df1,players_xG,how="inner",on=["player_id"])
 
