@@ -12,4 +12,3 @@ altair
 plotly
 cachecontrol
 rapidfuzz
-pickle
