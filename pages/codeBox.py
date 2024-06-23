@@ -10,7 +10,7 @@ import os
 import pathlib
 
 st.set_page_config(
-    page_title="footyLab codeBox",
+    page_title="codeBox",
     page_icon="./resources/DR_favicon.png",
     layout="wide",
     initial_sidebar_state="collapsed",
