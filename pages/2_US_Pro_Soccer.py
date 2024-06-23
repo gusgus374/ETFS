@@ -17,7 +17,7 @@ import seaborn as sns
 #from folium.plugins import HeatMap
 import altair as alt
 st.set_page_config(
-    page_title="footyLab Boot Room",
+    page_title="footyLab - Pro Soccer Stats",
     page_icon="./resources/DR_favicon.png",
     layout="wide",
     initial_sidebar_state="collapsed",
@@ -33,6 +33,7 @@ st.sidebar.page_link("pages/1_BootRoom.py", label=":soccer: Boot Room ")
 st.sidebar.page_link("pages/codeBox.py", label=":computer: CODE BOX ")
 st.sidebar.page_link("pages/coachGus.py", label=":pushpin: Coach's Examples ")
 st.sidebar.page_link("pages/Class_Page.py", label=":bar_chart: Class Page ")
+st.sidebar.page_link("pages/2_US_Pro_Soccer.py", label=":earth_americas: Pro Soccer Data :soccer:",disabled=False)
 st.logo("./resources/footyLab_v2_96_NB.png",link="https://datarook.com/")
 # Helper function to get the values from the list of dictionaries
 def get_value_from_data(data, action_type, key):

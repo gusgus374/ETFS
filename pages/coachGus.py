@@ -8,7 +8,7 @@ import altair as alt
 import streamlit.components.v1 as components
 
 st.set_page_config(
-    page_title="FootyLab codeBox",
+    page_title="code examples",
     page_icon="./resources/DR_favicon.png",
     layout="wide",
     initial_sidebar_state="collapsed",
@@ -18,6 +18,7 @@ st.sidebar.page_link("pages/1_BootRoom.py", label=":star: Boot Room ")
 st.sidebar.page_link("pages/codeBox.py", label=":computer: CODE BOX ")
 st.sidebar.page_link("pages/coachGus.py", label=":pushpin: Coach's Examples ")
 st.sidebar.page_link("pages/Class_Page.py", label=":bar_chart: Class Page ")
+st.sidebar.page_link("pages/2_US_Pro_Soccer.py", label=":earth_americas: Pro Soccer Data :soccer:",disabled=False)
 st.logo("./resources/footyLab_v2_96_NB.png",link="https://datarook.com/")
 st.title("Your Brain, Electricity, Some Stuff Called 'Myelin', and Getting Better at Stuff.")
 col1, col2 = st.columns(2)

@@ -7,7 +7,7 @@ import altair as alt
 import os
 import pathlib
 st.set_page_config(
-    page_title="footyLab Boot Room",
+    page_title="ETFS Class Page",
     page_icon="./resources/DR_favicon.png",
     layout="wide",
     initial_sidebar_state="collapsed",
@@ -23,6 +23,7 @@ st.sidebar.page_link("pages/1_BootRoom.py", label=":star: Boot Room ")
 st.sidebar.page_link("pages/codeBox.py", label=":computer: CODE BOX ")
 st.sidebar.page_link("pages/coachGus.py", label=":pushpin: Coach's Examples ")
 st.sidebar.page_link("pages/Class_Page.py", label=":bar_chart: Class Page ")
+st.sidebar.page_link("pages/2_US_Pro_Soccer.py", label=":earth_americas: Pro Soccer Data :soccer:",disabled=False)
 st.logo("./resources/footyLab_v2_96_NB.png",link="https://datarook.com/")
 
 def plotbox(df):
@@ -65,7 +66,7 @@ def plotbox(df):
     ).properties(height=500).interactive()
     #st.altair_chart(c, use_container_width=True)
 
-    st.altair_chart(f + e + d, use_container_width=True)
+    return f+e+d
 st.title("NEW TEAMS FOR TUESDAY JUNE 18th.")
 
 #Power Play
@@ -116,6 +117,7 @@ df["Total votes"] = pd.Series()
 #barchart = st.bar_chart(df,x="Name",y="Total votes")
 #barchart.add_rows(df)
 #df = df.groupby(["Team"],as_index=False).value_counts()
+plot = st.empty()
 for i,r in df.iterrows():
     if r["Name"] in blueTeam1:
         #st.write(r["Name"],r["Blue Votes"])
@@ -163,7 +165,8 @@ for i,r in df.iterrows():
         else:
             df.at[j,"Team"] = "Red"
         df.at[j,"Total votes"] = rr["Blue Votes"] + rr["Green Votes"]
-plotbox(df)
+        layers = plotbox(df)
+    plot.altair_chart(layers,use_container_width=True)
         
         
     
