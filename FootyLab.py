@@ -25,6 +25,8 @@ st.sidebar.page_link("pages/codeBox.py", label=":computer: CODE BOX ")
 st.sidebar.page_link("pages/coachGus.py", label=":pushpin: Coach's Examples ")
 st.sidebar.page_link("pages/Class_Page.py", label=":bar_chart: Class Page")
 st.sidebar.page_link("pages/2_US_Pro_Soccer.py", label=":earth_americas: Pro Soccer Data :soccer:",disabled=False)
+st.sidebar.page_link("pages/2_US_Pro_Soccer.py", label=":earth_americas: :soccer: Investigator",disabled=False)
+st.sidebar.page_link("pages/test.py", label="test",disabled=False)
 st.logo("./resources/footyLab_v2_96_NB.png",link="https://datarook.com/")
 
 st.image(image="./resources/ETSF_logo.png",width=60)
