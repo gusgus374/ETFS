@@ -6,27 +6,28 @@ import altair as alt
 #import time 
 import os
 import pathlib
-st.set_page_config(
-    page_title="ETFS Class Page",
-    page_icon="./resources/DR_favicon.png",
-    layout="wide",
-    initial_sidebar_state="collapsed",
-    menu_items={
-        'Get Help': 'https://datarook.com/',
-        'Report a bug': "https://datarook.com/#copyright",
-        'About': "# This is a version of FootyLab created for the 2024 East Tennessee Freedom School. Contact gus@datarook.com to learn more."
-    }
-)
 
-st.sidebar.page_link("FootyLab.py", label=":seedling: Home Page ")
-st.sidebar.page_link("pages/1_BootRoom.py", label=":star: Boot Room ")
-st.sidebar.page_link("pages/codeBox.py", label=":computer: CODE BOX ")
-st.sidebar.page_link("pages/coachGus.py", label=":pushpin: Coach's Examples ")
-st.sidebar.page_link("pages/Class_Page.py", label=":bar_chart: Class Page ")
-st.sidebar.page_link("pages/2_US_Pro_Soccer.py", label=":earth_americas: Pro Soccer Data :soccer:",disabled=False)
-with st.sidebar:
-    st.divider()
-st.logo("./resources/footyLab_v2_96_NB.png",link="https://datarook.com/")
+#st.set_page_config(
+#    page_title="ETFS Class Page",
+#    page_icon="./resources/DR_favicon.png",
+#    layout="wide",
+#    initial_sidebar_state="collapsed",
+#    menu_items={
+#        'Get Help': 'https://datarook.com/',
+#        'Report a bug': "https://datarook.com/#copyright",
+#        'About': "# This is a version of FootyLab created for the 2024 East Tennessee Freedom School. Contact gus@datarook.com to learn more."
+#    }
+#)
+
+#st.sidebar.page_link("FootyLab.py", label=":seedling: Home Page ")
+#st.sidebar.page_link("pages/1_BootRoom.py", label=":star: Boot Room ")
+#st.sidebar.page_link("pages/codeBox.py", label=":computer: CODE BOX ")
+#st.sidebar.page_link("pages/coachGus.py", label=":pushpin: Coach's Examples ")
+#st.sidebar.page_link("pages/Class_Page.py", label=":bar_chart: Class Page ")
+#st.sidebar.page_link("pages/2_US_Pro_Soccer.py", label=":earth_americas: Pro Soccer Data :soccer:",disabled=False)
+#with st.sidebar:
+#    st.divider()
+#st.logo("./resources/footyLab_v2_96_NB.png",link="https://datarook.com/")
 
 def plotbox(df):
     domain = ['Green', "Blue", "Red"]
@@ -169,26 +170,3 @@ for i,r in df.iterrows():
         df.at[j,"Total votes"] = rr["Blue Votes"] + rr["Green Votes"]
         layers = plotbox(df)
     plot.altair_chart(layers,use_container_width=True)
-        
-        
-    
-
-#st.write(df)
-#df = pd.melt(df, id_vars=['Name'], value_vars=['Blue Votes','Green Votes','Total votes', 'Team'], ignore_index=False)
-#st.write(df)
-st.divider()
-st.header("Links and Resources")
-col1, col2 = st.columns(2)
-with col1:
-      #st.subheader("Streamlit ~~Docs~~ Spellbook")
-      st.page_link("https://docs.streamlit.io/develop/api-reference", label="Click me to read about Streamlit ~~methods~~ spells", icon="🪄")
-      uploaded_file = os.path.join(str(pathlib.Path().resolve()), './data/last30days_GPS.csv')
-      with open(uploaded_file) as f:
-            btn = st.download_button(
-                  label="Download Last 30 Days GPS Data",
-                  data = f,
-                  file_name="gps_data.csv",
-                  mime="text/csv"
-                )
-with col2:
-      st.page_link("https://oneknoxcollective.notion.site/ETFS-Soccer-Scientists-8d132bcda49c4385b0a5c41adef5ebb8?pvs=4", label="ETFS Soccer Scientist Home Page", icon="🏡")

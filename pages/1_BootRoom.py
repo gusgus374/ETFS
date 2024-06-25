@@ -15,27 +15,7 @@ import streamlit.components.v1 as components
 from PIL import Image
 import altair as alt
 
-st.set_page_config(
-    page_title="footyLab Boot Room",
-    page_icon="./resources/DR_favicon.png",
-    layout="wide",
-    initial_sidebar_state="collapsed",
-    menu_items={
-        'Get Help': 'https://datarook.com/',
-        'Report a bug': "https://datarook.com/#copyright",
-        'About': "# This is a version of FootyLab created for the 2024 East Tennessee Freedom School. Contact gus@datarook.com to learn more."
-    }
-)
-st.sidebar.page_link("FootyLab.py", label=":seedling: Home Page ")
-st.sidebar.page_link("pages/1_BootRoom.py", label=":star: Boot Room ")
-st.sidebar.page_link("pages/codeBox.py", label=":computer: CODE BOX ")
-st.sidebar.page_link("pages/coachGus.py", label=":pushpin: Coach's Examples ")
-st.sidebar.page_link("pages/Class_Page.py", label=":bar_chart: Class Page ")
-st.sidebar.page_link("pages/2_US_Pro_Soccer.py", label=":earth_americas: Pro Soccer Data :soccer:",disabled=False)
-with st.sidebar:
-    st.divider()
 
-st.logo("./resources/footyLab_v2_96_NB.png",link="https://datarook.com/")
 #with st.container():
  #       col1, col2 = st.columns([1,2])
   #      with col1:
@@ -147,20 +127,3 @@ coach_message = st.chat_message(name="Coach Gus",avatar="./resources/profile_coa
 coach_message.write("Caring deeply makes you vulnerable because things don't always go your way.")
 coach_message.write("And caring deeply is also key to a rich and meaningful life.")
 coach_message.write("Don't be like the kids in gym class who were too cool to try. Don't be afraid to put yourslef out there. The best stuff comes on the other side of that.")
-
-st.divider()
-st.header("Links and Resources")
-col1, col2 = st.columns(2)
-with col1:
-      #st.subheader("Streamlit ~~Docs~~ Spellbook")
-      st.page_link("https://docs.streamlit.io/develop/api-reference", label="Click me to read about Streamlit ~~methods~~ spells", icon="🪄")
-      uploaded_file = os.path.join(str(pathlib.Path().resolve()), './data/last30days_GPS.csv')
-      with open(uploaded_file) as f:
-            btn = st.download_button(
-                  label="Download Last 30 Days GPS Data",
-                  data = f,
-                  file_name="gps_data.csv",
-                  mime="text/csv"
-                )
-with col2:
-      st.page_link("https://oneknoxcollective.notion.site/ETFS-Soccer-Scientists-8d132bcda49c4385b0a5c41adef5ebb8?pvs=4", label="ETFS Soccer Scientist Home Page", icon="🏡")

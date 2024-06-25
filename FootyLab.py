@@ -18,101 +18,86 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
+if "user" not in st.session_state:
+    st.session_state.user = None
+if "password" not in st.session_state:
+     st.session_state.password = None
+
+ROLES = [None, "Gus", "Ayden", "Admin"]
 
 
-st.sidebar.page_link("FootyLab.py", label=":seedling: Home Page ")
-st.sidebar.page_link("pages/1_BootRoom.py", label=":star: Boot Room ")
-st.sidebar.page_link("pages/codeBox.py", label=":computer: CODE BOX ")
-st.sidebar.page_link("pages/coachGus.py", label=":pushpin: Coach's Examples ")
-st.sidebar.page_link("pages/Class_Page.py", label=":bar_chart: Class Page")
-st.sidebar.page_link("pages/2_US_Pro_Soccer.py", label=":earth_americas: Pro Soccer Data :soccer:",disabled=False)
-#st.sidebar.page_link("pages/test.py", label="test",disabled=False)
-with st.sidebar:
-    st.divider()
+def login():
+
+    st.header("Log in")
+    user = st.selectbox("User", ROLES)
+    password = st.text_input("Password")
+
+    if st.button("Log in"):
+        st.session_state.user = user
+        st.session_state.password = password
+        st.rerun()
+
+
+def logout():
+    st.session_state.user = None
+    st.session_state.password = None
+    st.rerun()
+
+
+user = st.session_state.user
+password = st.session_state.password
+
+logout_page = st.Page(logout, title="Log out", icon=":material/logout:")
+
+settings = st.Page("settings.py", title="Settings", icon=":material/settings:")
+
+BootRoom = st.Page(
+    "./pages/1_BootRoom.py",
+    title="BootRoom",
+    icon=":material/help:",
+    default=(user == "Gus"),
+)
+coachGus = st.Page(
+    "./pages/coachGus.py", title="Coach's Examples", icon=":material/bug_report:"
+)
+classpage = st.Page(
+    "./pages/Class_Page.py",
+    title="Class Page",
+    icon=":material/healing:",
+    default=(user == "Admin"),
+)
+codeBox = st.Page(
+    "./pages/codeBox.py", title="", icon=":material/handyman:",default=(user=="Ayden")
+)
+prosoccer = st.Page(
+    "./pages/2_US_Pro_Soccer.py",
+    title="Pro Soccer Data",
+    icon=":material/person_add:",
+)
+ayden = st.Page("./pages/test2.py", title="Ayden", icon=":material/security:")
+
+account_pages = [logout_page, settings]
+explore_pages = [BootRoom, prosoccer]
+build_pages = [codeBox, coachGus]
+deployed_pages = [classpage, ayden]
+
+page_dict = {}
+if (st.session_state.user in ["Gus", "Admin","Ayden"] and st.session_state.password == "soccerlabETFS"):
+    page_dict["Explore"] = explore_pages
+if (st.session_state.user in ["Gus", "Admin","Ayden"] and st.session_state.password == "soccerlabETFS"):
+    page_dict["Build"] = build_pages
+if (st.session_state.user in ["Gus", "Admin"] and st.session_state.password == "soccerlabETFS"):
+    page_dict["Deployed"] = deployed_pages
+
+if len(page_dict) > 0:
+    pg = st.navigation({"Account": account_pages} | page_dict)
+else:
+    pg = st.navigation([st.Page(login)])
+
+pg.run()
+
 st.logo("./resources/footyLab_v2_96_NB.png",link="https://datarook.com/")
 
-st.image(image="./resources/ETSF_logo.png",width=60)
-st.title("Welcome to the East Tennessee Freedom Schools footyLab!")
-
-
-
-st.header("This is the home page of our app!")
-
-#st.text("This is the home page of our currently-under-development app!")
-st.text("The goal is for us to explore the data we have been collecting on the soccer field right here in the footyLab.")
-st.subheader("BUT HOW ARE WE GONNA DO THIS?!")
-st.markdown("Magic. Well... actually by writing some *python code*... which feels like magic, I promise.")
-
-st.header("Hacking Skills = ~Computer Programming~ *Magic*")
-iframe_src2 = "https://www.youtube.com/embed/Qgr4dcsY-60?si=gsK8I_rpz0cpH5UO"
-components.iframe(iframe_src2,400,300)
-
-coach_message = st.chat_message(name="Coach Gus",avatar="./resources/profile_coachGus.JPG")
-coach_message.write("Now I'm going to ``cast a spell`` (:wink:) to generate a button:")
-
-st.code("""
-        #this spell is actually just python code
-st.button("I'm a Button")
-        """)
-st.button("I'm a Button")
-
-coach_message = st.chat_message(name="Coach Gus",avatar="./resources/profile_coachGus.JPG")
-coach_message.write("Okay cool! We can click on our newly casted button but... that's about it. Let's try a slightly more advanced spell:")
-
-st.code("""
-if st.button("Click me for a celebration"):
-        st.balloons()
-        """)
-
-if st.button("Click me for a celebration"):
-        st.balloons()
-
-st.subheader("See? Magic.")
-st.divider()
-coach_message = st.chat_message(name="Coach Gus",avatar="./resources/profile_coachGus.JPG")
-coach_message.write("Below you'll find the *codeBox* where you can try coding yourself!")
-
-
-
-editor, app= st.columns(2)
-INITIAL_CODE = """#try changing the title's name:
-st.title("Hello, FootyLab!")
-
-#see what happens when you alter the code below:
-some_number = 2
-some_text = "I'm a string!"
-
-st.write(some_number)
-
-st.header(some_text)
-
-st.write(some_number + some_number)
-"""
-with editor:
-    st.subheader("~~Cast some spells~~ Write some python code yourself!")
-    left = st.container(border=True)
-    with left:
-         code = st_ace(
-              value=INITIAL_CODE,
-              language="python",
-              placeholder="st.header('Hello world!')",
-              theme="tomorrow_night_eighties",
-              show_gutter=True,
-              show_print_margin=True,
-              auto_update=False,
-              min_lines=16,
-              readonly=False,
-              key="ace-editor",
-              )
-         #st.write("Hit `CTRL+ENTER` to refresh")
-         #st.write("*Remember to save your code separately!*")
-st.divider()
-
-with app:
-        st.subheader("Your Results :point_down:")
-        right = st.container(border=True)
-        with right:
-             exec(code)
 st.divider()
 st.header("Links and Resources")
 col1, col2 = st.columns(2)

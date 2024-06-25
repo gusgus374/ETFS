@@ -6,22 +6,47 @@ import pathlib
 import streamlit as st
 import altair as alt
 import streamlit.components.v1 as components
+from streamlit_ace import st_ace
 
-st.set_page_config(
-    page_title="code examples",
-    page_icon="./resources/DR_favicon.png",
-    layout="wide",
-    initial_sidebar_state="collapsed",
-)
-st.sidebar.page_link("FootyLab.py", label=":seedling: Home Page ")
-st.sidebar.page_link("pages/1_BootRoom.py", label=":star: Boot Room ")
-st.sidebar.page_link("pages/codeBox.py", label=":computer: CODE BOX ")
-st.sidebar.page_link("pages/coachGus.py", label=":pushpin: Coach's Examples ")
-st.sidebar.page_link("pages/Class_Page.py", label=":bar_chart: Class Page ")
-st.sidebar.page_link("pages/2_US_Pro_Soccer.py", label=":earth_americas: Pro Soccer Data :soccer:",disabled=False)
-with st.sidebar:
-    st.divider()
-st.logo("./resources/footyLab_v2_96_NB.png",link="https://datarook.com/")
+st.image(image="./resources/ETSF_logo.png",width=60)
+st.title("Welcome to the East Tennessee Freedom Schools footyLab!")
+
+
+
+st.header("This is the home page of our app!")
+
+#st.text("This is the home page of our currently-under-development app!")
+st.text("The goal is for us to explore the data we have been collecting on the soccer field right here in the footyLab.")
+st.subheader("BUT HOW ARE WE GONNA DO THIS?!")
+st.markdown("Magic. Well... actually by writing some *python code*... which feels like magic, I promise.")
+
+st.header("Hacking Skills = ~Computer Programming~ *Magic*")
+iframe_src2 = "https://www.youtube.com/embed/Qgr4dcsY-60?si=gsK8I_rpz0cpH5UO"
+components.iframe(iframe_src2,400,300)
+
+coach_message = st.chat_message(name="Coach Gus",avatar="./resources/profile_coachGus.JPG")
+coach_message.write("Now I'm going to ``cast a spell`` (:wink:) to generate a button:")
+
+st.code("""
+        #this spell is actually just python code
+st.button("I'm a Button")
+        """)
+st.button("I'm a Button")
+
+coach_message = st.chat_message(name="Coach Gus",avatar="./resources/profile_coachGus.JPG")
+coach_message.write("Okay cool! We can click on our newly casted button but... that's about it. Let's try a slightly more advanced spell:")
+
+st.code("""
+if st.button("Click me for a celebration"):
+        st.balloons()
+        """)
+
+if st.button("Click me for a celebration"):
+        st.balloons()
+
+st.subheader("See? Magic.")
+st.divider()
+
 st.title("Your Brain, Electricity, Some Stuff Called 'Myelin', and Getting Better at Stuff.")
 col1, col2 = st.columns(2)
 with col2:
@@ -47,23 +72,6 @@ with col1:
         st.caption("Hint: make sure to click the 'Voltage' checkbox then drag and drop the red and blue particels around")
 st.subheader("Soccer and Science.")
 st.header("What about that data thing? What *is* data?")
-
-st.divider()
-st.header("Links and Resources")
-col1, col2 = st.columns(2)
-with col1:
-      #st.subheader("Streamlit ~~Docs~~ Spellbook")
-      st.page_link("https://docs.streamlit.io/develop/api-reference", label="Click me to read about Streamlit ~~methods~~ spells", icon="🪄")
-      uploaded_file = os.path.join(str(pathlib.Path().resolve()), './data/last30days_GPS.csv')
-      with open(uploaded_file) as f:
-            btn = st.download_button(
-                  label="Download Last 30 Days GPS Data",
-                  data = f,
-                  file_name="gps_data.csv",
-                  mime="text/csv"
-                )
-with col2:
-      st.page_link("https://oneknoxcollective.notion.site/ETFS-Soccer-Scientists-8d132bcda49c4385b0a5c41adef5ebb8?pvs=4", label="ETFS Soccer Scientist Home Page", icon="🏡")
 
 coach_message = st.chat_message(name="Coach Gus",avatar="./resources/profile_coachGus.JPG")
 coach_message.write("Below you'll find a *file uploader* and the *codeBox* where you can play around with data you upload!")
