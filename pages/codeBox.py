@@ -7,46 +7,48 @@ import pandas as pd
 import numpy as np
 import altair as alt
 import os
-import pathlib
+from pathlib import Path
 
-#st.set_page_config(
- #   page_title="codeBox",
-  #  page_icon="./resources/DR_favicon.png",
-   # layout="wide",
-    #initial_sidebar_state="collapsed",
-   # menu_items={
-   #     'Get Help': 'https://datarook.com/',
-    #    'Report a bug': "https://datarook.com/#copyright",
-   #     'About': "# This is a version of FootyLab created for the 2024 East Tennessee Freedom School. Contact gus@datarook.com to learn more."
-   # }
-#)
-#st.sidebar.page_link("FootyLab.py", label=":seedling: Home Page ")
-#st.sidebar.page_link("pages/1_BootRoom.py", label=":star: Boot Room ")
-#st.sidebar.page_link("pages/codeBox.py", label=":computer: CODE BOX ")
-#st.sidebar.page_link("pages/coachGus.py", label=":pushpin: Coach's Examples ")
-#st.sidebar.page_link("pages/Class_Page.py", label=":bar_chart: Class Page ")
-#st.sidebar.page_link("pages/2_US_Pro_Soccer.py", label=":earth_americas: Pro Soccer Data :soccer:",disabled=False)
-#with st.sidebar:
-#    st.divider()
-#st.logo("./resources/footyLab_v2_96_NB.png",link="https://datarook.com/")
 
+if 'code' not in st.session_state:
+     st.session_state['code'] = None
+if 'old_code' not in st.session_state:
+     st.session_state['old_code'] = None
 
 st.title("footyLab codeBox")
+with st.sidebar:
+    file = st.file_uploader("upload python script",type=[".py"])
 
+if st.session_state.old_code is not None:
+    if file is not None:
+        old_code = file.read()
+        decoded_string = old_code.decode("utf-8")
+        if st.session_state.old_code != decoded_string:
+            st.session_state.old_code = decoded_string
+        st.session_state.code = st.session_state.old_code
+    else:
+        st.session_state.code = st.session_state.old_code
 
-     
-
-tab1, tab2 = st.tabs(["EDITOR","USER EXPERIENCE"])
-
-INITIAL_CODE = """# write code below!
+if st.session_state.old_code is None:
+    if file is not None:
+        old_code = file.read()
+        decoded_string = old_code.decode("utf-8")
+        st.session_state.old_code = decoded_string
+        INITIAL_CODE = st.session_state.old_code
+            
+    else:
+        INITIAL_CODE = """# write code below!
 import streamlit as st
 
 st.title("What do you want to build today?")
 
-"""
+                            """
+     
 
-if 'code' not in st.session_state:
-     st.session_state['code'] = INITIAL_CODE
+tab1, tab2 = st.tabs(["EDITOR","USER EXPERIENCE"])
+
+
+
 with tab1:
     editor = st.container(border=True)
     if st.session_state.code is None:
@@ -80,6 +82,7 @@ with tab1:
             )
 
 st.session_state.code = code
+st.session_state.old_code = st.session_state.code
         #st.write("*Remember to save your code separately!*")
 
 
@@ -90,7 +93,7 @@ with tab2:
         exec(st.session_state.code)
 
 with st.popover("SAVE YOUR WORK"):
-    file_name = st.text_input("Name your file","my_code")
+    file_name = st.text_input("Name your file",f"{st.session_state.user}")
     btn = st.download_button(
                     label="Download Python File",
                     data = code,

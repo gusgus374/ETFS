@@ -23,9 +23,9 @@ if "user" not in st.session_state:
 if "password" not in st.session_state:
      st.session_state.password = None
 
-ROLES = [None, "Gus", "Ayden", "Admin"]
-
-
+ROLES = [None, "Ayden", "AyMarri","Aynira","Azy'rion","Breionna","Ceslee","Dalton","Elhaj","Elias","Garrett","Imani","Jairus","Jamiya","Joseph","Leo","Maurice","Michya","Nevaeh","Olivia","Raye","Ronnie","Samantha","Zane","Gus","Admin"]
+allroles = ["Ayden", "AyMarri","Aynira","Azy'rion","Breionna","Ceslee","Dalton","Elhaj","Elias","Garrett","Imani","Jairus","Jamiya","Joseph","Leo","Maurice","Michya","Nevaeh","Olivia","Raye","Ronnie","Samantha","Zane","Gus","Admin"]
+playersdeployed = ["Ayden", "AyMarri","Azy'rion","Breionna","Elias","Jamiya","Leo","Samantha","Gus"]
 def login():
 
     st.header("Log in")
@@ -55,38 +55,47 @@ BootRoom = st.Page(
     "./pages/1_BootRoom.py",
     title="BootRoom",
     icon=":material/help:",
-    default=(user == "Gus"),
+    default=(user == "Admin"),
 )
 coachGus = st.Page(
-    "./pages/coachGus.py", title="Coach's Examples", icon=":material/bug_report:"
+    "./pages/coachGus.py", title="Coach's Examples", icon=":material/bug_report:",default=(user == "Gus")
 )
 classpage = st.Page(
     "./pages/Class_Page.py",
     title="Class Page",
     icon=":material/healing:",
-    default=(user == "Admin"),
 )
 codeBox = st.Page(
-    "./pages/codeBox.py", title="", icon=":material/handyman:",default=(user=="Ayden")
+    "./pages/codeBox.py", title="", icon=":material/handyman:",default=(user not in playersdeployed)
 )
 prosoccer = st.Page(
     "./pages/2_US_Pro_Soccer.py",
     title="Pro Soccer Data",
     icon=":material/person_add:",
 )
-ayden = st.Page("./pages/test2.py", title="Ayden", icon=":material/security:")
+ayden = st.Page("./roster/LeoJamersonAydenAzyrion.py", title="Music Boys", icon=":material/security:",default=(user=="Ayden" or user == "Leo" or user == "Azy'rion" or user == "Jamerson"))
+
+samantha = st.Page("./roster/samantha.py", title="Samantha", icon=":material/security:",default=(user=="Samantha"))
+
+aymarri = st.Page("./roster/aymarri.py", title="AyMarri", icon=":material/security:",default=(user=="AyMarri"))
+
+breionna = st.Page("./roster/breionna.py", title="Breionna", icon=":material/security:",default=(user=="Breionna"))
+
+jamiya = st.Page("./roster/jamiya.py", title="Jamiya", icon=":material/security:",default=(user=="Jamiya"))
+
+eli = st.Page("./roster/eli.py", title="Eli", icon=":material/security:",default=(user=="Elias"))
 
 account_pages = [logout_page, settings]
 explore_pages = [BootRoom, prosoccer]
 build_pages = [codeBox, coachGus]
-deployed_pages = [classpage, ayden]
+deployed_pages = [classpage, ayden, samantha, aymarri, breionna, jamiya, eli]
 
 page_dict = {}
-if (st.session_state.user in ["Gus", "Admin","Ayden"] and st.session_state.password == "soccerlabETFS"):
+if (st.session_state.user in allroles and st.session_state.password == "soccerlabETFS"):
     page_dict["Explore"] = explore_pages
-if (st.session_state.user in ["Gus", "Admin","Ayden"] and st.session_state.password == "soccerlabETFS"):
+if (st.session_state.user in allroles and st.session_state.password == "soccerlabETFS"):
     page_dict["Build"] = build_pages
-if (st.session_state.user in ["Gus", "Admin"] and st.session_state.password == "soccerlabETFS"):
+if (st.session_state.user in playersdeployed and st.session_state.password == "soccerlabETFS"):
     page_dict["Deployed"] = deployed_pages
 
 if len(page_dict) > 0:

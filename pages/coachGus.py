@@ -11,7 +11,8 @@ from streamlit_ace import st_ace
 st.image(image="./resources/ETSF_logo.png",width=60)
 st.title("Welcome to the East Tennessee Freedom Schools footyLab!")
 
-
+if st.button("Best ever"):
+      st.image("https://www.si.com/.image/t_share/MTc5NTMwMzAxNjQ1NTMwMjQ5/gettyimages-891445.jpg")
 
 st.header("This is the home page of our app!")
 
