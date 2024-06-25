@@ -19,6 +19,7 @@ st.set_page_config(
 )
 
 
+
 st.sidebar.page_link("FootyLab.py", label=":seedling: Home Page ")
 st.sidebar.page_link("pages/1_BootRoom.py", label=":star: Boot Room ")
 st.sidebar.page_link("pages/codeBox.py", label=":computer: CODE BOX ")

@@ -169,7 +169,7 @@ if bygame == True:
         name = st.selectbox('Select Player',names,names.index("Lionel Messi"))
     else:
         name = st.selectbox('Select Player',names)
-    
+    Players_by_game['goals_added_above_avg'] = Players_by_game['Dribbling_goals_added_above_avg']+Players_by_game['Fouling_goals_added_above_avg']+Players_by_game['Interrupting_goals_added_above_avg']+Players_by_game['Passing_goals_added_above_avg']+Players_by_game['Receiving_goals_added_above_avg']+Players_by_game['Shooting_goals_added_above_avg']
     Players_by_game["Dribbling Factor"] = Players_by_game["Dribbling_goals_added_raw"]/(np.abs(Players_by_game['Dribbling_goals_added_raw'])+np.abs(Players_by_game['Fouling_goals_added_raw'])+np.abs(Players_by_game['Interrupting_goals_added_raw'])+np.abs(Players_by_game['Passing_goals_added_raw'])+np.abs(Players_by_game['Receiving_goals_added_raw'])+np.abs(Players_by_game['Shooting_goals_added_raw']))*100
     Players_by_game["Shooting Factor"] = Players_by_game["Shooting_goals_added_raw"]/(np.abs(Players_by_game['Dribbling_goals_added_raw'])+np.abs(Players_by_game['Fouling_goals_added_raw'])+np.abs(Players_by_game['Interrupting_goals_added_raw'])+np.abs(Players_by_game['Passing_goals_added_raw'])+np.abs(Players_by_game['Receiving_goals_added_raw'])+np.abs(Players_by_game['Shooting_goals_added_raw']))*100
     Players_by_game["Passing Factor"] = Players_by_game["Passing_goals_added_raw"]/(np.abs(Players_by_game['Dribbling_goals_added_raw'])+np.abs(Players_by_game['Fouling_goals_added_raw'])+np.abs(Players_by_game['Interrupting_goals_added_raw'])+np.abs(Players_by_game['Passing_goals_added_raw'])+np.abs(Players_by_game['Receiving_goals_added_raw'])+np.abs(Players_by_game['Shooting_goals_added_raw']))*100
@@ -178,17 +178,30 @@ if bygame == True:
     Players_by_game["Fouling Factor"] = Players_by_game["Fouling_goals_added_raw"]/(np.abs(Players_by_game['Dribbling_goals_added_raw'])+np.abs(Players_by_game['Fouling_goals_added_raw'])+np.abs(Players_by_game['Interrupting_goals_added_raw'])+np.abs(Players_by_game['Passing_goals_added_raw'])+np.abs(Players_by_game['Receiving_goals_added_raw'])+np.abs(Players_by_game['Shooting_goals_added_raw']))*100
 
     selected_player = Players_by_game.loc[Players_by_game['player_name'] == name]
+    variable_x = st.selectbox("$$X$$",Players_by_game.columns.to_list(),31)
+    variable_y = st.selectbox("$$Y$$",Players_by_game.columns.to_list(),28)
 
     chart = alt.Chart(selected_player).mark_circle().encode(
-            x='date_time_utc',
-            y='goals_added_above_replacement', 
+            x=variable_x,
+            y=variable_y, 
             size=alt.Size('goals_added_raw',legend=None),
             color=alt.Color('Away_Team',legend=None),
             tooltip=['player_name','minutes_played','date_time_utc','Home_Team','home_score','Away_Team','away_score','goals','primary_assists','key_passes','Shooting Factor','Receiving Factor','Passing Factor','Dribbling Factor','Interrupting Factor','Fouling Factor']).properties(height=500).interactive()
-
+    line = alt.Chart(selected_player).mark_line().encode(x=variable_x,y=variable_y,color=alt.Color('player_name',legend=None))
     st.write(name, " by game")
-    st.altair_chart(chart, theme="streamlit", use_container_width=True)
+    st.altair_chart(chart + line, theme="streamlit", use_container_width=True)
 
+    selected_team = selected_player["team_name"].unique().tolist()[0]
+    Team = Players_by_game.loc[Players_by_game["team_name"] == selected_team]
+    st.header("Team Comparison")
+    Teamchart = alt.Chart(Team).mark_circle().encode(
+            x=variable_x,
+            y=variable_y, 
+            size=alt.Size('goals_added_raw',legend=None),
+            color=alt.Color('primary_general_position'),
+            tooltip=['player_name','team_name','minutes_played','date_time_utc','Home_Team','home_score','Away_Team','away_score','goals','primary_assists','key_passes','Shooting Factor','Receiving Factor','Passing Factor','Dribbling Factor','Interrupting Factor','Fouling Factor']).properties(height=600).interactive()
+
+    st.altair_chart(Teamchart + line, theme="streamlit", use_container_width=True)
     #OneKnoxPlayers = Players_by_game.loc[Players_by_game['team_name'] == "One Knoxville SC"]
     #'GK', 'CB', 'FB', 'DM', 'CM', 'AM', 'W', and 'ST'.
     #FullBacks = OneKnoxPlayers.loc[OneKnoxPlayers['primary_general_position'] == "FB"]
@@ -208,36 +221,36 @@ if bygame == True:
 
     st.header("Full Backs")
     FBchart = alt.Chart(FullBacks).mark_circle().encode(
-            x='date_time_utc',
-            y='goals_added_above_replacement', 
+            x=variable_x,
+            y=variable_y,
             size=alt.Size('goals_added_raw',legend=None),
-            color=alt.Color('player_name',legend=None),
-            tooltip=['player_name','minutes_played','date_time_utc','Home_Team','home_score','Away_Team','away_score','goals','primary_assists','key_passes','Shooting Factor','Receiving Factor','Passing Factor','Dribbling Factor','Interrupting Factor','Fouling Factor']).properties(height=600).interactive()
+            color=alt.Color('team_name',legend=None),
+            tooltip=['player_name','team_name','minutes_played','date_time_utc','Home_Team','home_score','Away_Team','away_score','goals','primary_assists','key_passes','Shooting Factor','Receiving Factor','Passing Factor','Dribbling Factor','Interrupting Factor','Fouling Factor']).properties(height=600).interactive()
 
     st.altair_chart(FBchart, theme="streamlit", use_container_width=True)
 
     st.header("Center Backs")
     CBchart = alt.Chart(CenterBacks).mark_circle().encode(
-            x='date_time_utc',
-            y='goals_added_above_replacement', 
+            x=variable_x,
+            y=variable_y, 
             size=alt.Size('goals_added_raw',legend=None),
-            color=alt.Color('player_name',legend=None),
-            tooltip=['player_name','minutes_played','date_time_utc','Home_Team','home_score','Away_Team','away_score','goals','primary_assists','key_passes','Shooting Factor','Receiving Factor','Passing Factor','Dribbling Factor','Interrupting Factor','Fouling Factor']).properties(height=600).interactive()
+            color=alt.Color('team_name',legend=None),
+            tooltip=['player_name','team_name','minutes_played','date_time_utc','Home_Team','home_score','Away_Team','away_score','goals','primary_assists','key_passes','Shooting Factor','Receiving Factor','Passing Factor','Dribbling Factor','Interrupting Factor','Fouling Factor']).properties(height=600).interactive()
     st.altair_chart(CBchart, theme="streamlit", use_container_width=True)
 
     st.header("Defensive Mids")
     DMchart = alt.Chart(DMids).mark_circle().encode(
-            x='date_time_utc',
-            y='goals_added_above_replacement', 
+            x=variable_x,
+            y=variable_y,
             size=alt.Size('goals_added_raw',legend=None),
-            color=alt.Color('player_name',legend=None),
-            tooltip=['player_name','minutes_played','date_time_utc','Home_Team','home_score','Away_Team','away_score','goals','primary_assists','key_passes','Shooting Factor','Receiving Factor','Passing Factor','Dribbling Factor','Interrupting Factor','Fouling Factor']).properties(height=600).interactive()
+            color=alt.Color('team_name',legend=None),
+            tooltip=['player_name','team_name','minutes_played','date_time_utc','Home_Team','home_score','Away_Team','away_score','goals','primary_assists','key_passes','Shooting Factor','Receiving Factor','Passing Factor','Dribbling Factor','Interrupting Factor','Fouling Factor']).properties(height=600).interactive()
     st.altair_chart(DMchart, theme="streamlit", use_container_width=True)
 
     st.header("Center Mids")
     CMchart = alt.Chart(CMids).mark_circle().encode(
-            x='date_time_utc',
-            y='goals_added_above_replacement', 
+            x=variable_x,
+            y=variable_y, 
             size=alt.Size('goals_added_raw',legend=None),
             color=alt.Color('player_name',legend=None),
             tooltip=['player_name','minutes_played','date_time_utc','Home_Team','home_score','Away_Team','away_score','goals','primary_assists','key_passes','Shooting Factor','Receiving Factor','Passing Factor','Dribbling Factor','Interrupting Factor','Fouling Factor']).properties(height=600).interactive()
@@ -245,8 +258,8 @@ if bygame == True:
 
     st.header("Attacking Mids")
     AMchart = alt.Chart(AMids).mark_circle().encode(
-            x='date_time_utc',
-            y='goals_added_above_replacement', 
+            x=variable_x,
+            y=variable_y,
             size=alt.Size('goals_added_raw',legend=None),
             color=alt.Color('player_name',legend=None),
             tooltip=['player_name','minutes_played','date_time_utc','Home_Team','home_score','Away_Team','away_score','goals','primary_assists','key_passes','Shooting Factor','Receiving Factor','Passing Factor','Dribbling Factor','Interrupting Factor','Fouling Factor']).properties(height=600).interactive()
@@ -254,8 +267,8 @@ if bygame == True:
 
     st.header("Wingers")
     Wchart = alt.Chart(Wingers).mark_circle().encode(
-            x='date_time_utc',
-            y='goals_added_above_replacement', 
+            x=variable_x,
+            y=variable_y, 
             size=alt.Size('goals_added_raw',legend=None),
             color=alt.Color('player_name',legend=None),
             tooltip=['player_name','minutes_played','date_time_utc','Home_Team','home_score','Away_Team','away_score','goals','primary_assists','key_passes','Shooting Factor','Receiving Factor','Passing Factor','Dribbling Factor','Interrupting Factor','Fouling Factor']).properties(height=600).interactive()
@@ -263,8 +276,8 @@ if bygame == True:
 
     st.header("Strikers")
     STchart = alt.Chart(Strikers).mark_circle().encode(
-            x='date_time_utc',
-            y='goals_added_above_replacement', 
+            x=variable_x,
+            y=variable_y,
             size=alt.Size('goals_added_raw',legend=None),
             color=alt.Color('player_name',legend=None),
             tooltip=['player_name','minutes_played','date_time_utc','Home_Team','home_score','Away_Team','away_score','goals','primary_assists','key_passes','Shooting Factor','Receiving Factor','Passing Factor','Dribbling Factor','Interrupting Factor','Fouling Factor']).properties(height=600).interactive()
