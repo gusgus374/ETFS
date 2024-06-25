@@ -20,8 +20,8 @@ st.set_page_config(
 
 if "user" not in st.session_state:
     st.session_state.user = None
-if "password" not in st.session_state:
-     st.session_state.password = None
+#if "password" not in st.session_state:
+#     st.session_state.password = None
 
 ROLES = [None, "Ayden", "AyMarri","Aynira","Azy'rion","Breionna","Ceslee","Dalton","Elhaj","Elias","Garrett","Imani","Jairus","Jamiya","Joseph","Leo","Maurice","Michya","Nevaeh","Olivia","Raye","Ronnie","Samantha","Zane","Gus","Admin"]
 allroles = ["Ayden", "AyMarri","Aynira","Azy'rion","Breionna","Ceslee","Dalton","Elhaj","Elias","Garrett","Imani","Jairus","Jamiya","Joseph","Leo","Maurice","Michya","Nevaeh","Olivia","Raye","Ronnie","Samantha","Zane","Gus","Admin"]
@@ -30,22 +30,22 @@ def login():
 
     st.header("Log in")
     user = st.selectbox("User", ROLES)
-    password = st.text_input("Password")
+    #password = st.text_input("Password")
 
     if st.button("Log in"):
         st.session_state.user = user
-        st.session_state.password = password
+        #st.session_state.password = password
         st.rerun()
 
 
 def logout():
     st.session_state.user = None
-    st.session_state.password = None
+    #st.session_state.password = None
     st.rerun()
 
 
 user = st.session_state.user
-password = st.session_state.password
+#password = st.session_state.password
 
 logout_page = st.Page(logout, title="Log out", icon=":material/logout:")
 
@@ -91,11 +91,11 @@ build_pages = [codeBox, coachGus]
 deployed_pages = [classpage, ayden, samantha, aymarri, breionna, jamiya, eli]
 
 page_dict = {}
-if (st.session_state.user in allroles and st.session_state.password == "soccerlabETFS"):
+if (st.session_state.user in allroles):
     page_dict["Explore"] = explore_pages
-if (st.session_state.user in allroles and st.session_state.password == "soccerlabETFS"):
+if (st.session_state.user in allroles):
     page_dict["Build"] = build_pages
-if (st.session_state.user in playersdeployed and st.session_state.password == "soccerlabETFS"):
+if (st.session_state.user in playersdeployed):
     page_dict["Deployed"] = deployed_pages
 
 if len(page_dict) > 0:
