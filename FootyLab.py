@@ -23,8 +23,8 @@ if "user" not in st.session_state:
 #if "password" not in st.session_state:
 #     st.session_state.password = None
 
-ROLES = [None, "Ayden", "AyMarri","Aynira","Azy'rion","Breionna","Ceslee","Dalton","Elhaj","Elias","Garrett","Imani","Jairus","Jamiya","Joseph","Leo","Maurice","Michya","Nevaeh","Olivia","Raye","Ronnie","Samantha","Zane","Gus","Admin"]
-allroles = ["Ayden", "AyMarri","Aynira","Azy'rion","Breionna","Ceslee","Dalton","Elhaj","Elias","Garrett","Imani","Jairus","Jamiya","Joseph","Leo","Maurice","Michya","Nevaeh","Olivia","Raye","Ronnie","Samantha","Zane","Gus","Admin"]
+ROLES = [None, "Ayden", "AyMarri","Aynira","Azy'rion","Breionna","Ceslee","Dalton","Elhaj","Elias","Garrett","Imani","Jairus","Jamiya","Joseph","Leo","Maurice","Michya","Nevaeh","Olivia","Raye","Ronnie","Samantha","Zane","Gus","Admin","Mrs. Summey"]
+allroles = ["Ayden", "AyMarri","Aynira","Azy'rion","Breionna","Ceslee","Dalton","Elhaj","Elias","Garrett","Imani","Jairus","Jamiya","Joseph","Leo","Maurice","Michya","Nevaeh","Olivia","Raye","Ronnie","Samantha","Zane","Gus","Mrs. Summey","Admin"]
 playersdeployed = ["Ayden", "AyMarri","Azy'rion","Breionna","Elias","Jamiya","Leo","Samantha","Gus"]
 def login():
 
