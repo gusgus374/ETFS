@@ -70,8 +70,8 @@ def plotbox(df):
     #st.altair_chart(c, use_container_width=True)
 
     return f+e+d
-st.title("NEW TEAMS FOR TUESDAY JUNE 18th.")
-
+#st.title("NEW TEAMS FOR TUESDAY JUNE 18th.")
+st.title("CLASS PAGE")
 #Power Play
 blueTeam1 = ["Azy'rion","AyMarri","Ayden","Dalton","Jamerson","Garrett","Jamiya","Jarius","Zane","Raye","Nevaeh","Ronnie"]
 greenTeam1 = ["AyNirra","Elias","Elhaj","Ceslee","Imani","Michaya","Gabi","Samantha"]
@@ -168,5 +168,7 @@ for i,r in df.iterrows():
         else:
             df.at[j,"Team"] = "Red"
         df.at[j,"Total votes"] = rr["Blue Votes"] + rr["Green Votes"]
-        layers = plotbox(df)
-    plot.altair_chart(layers,use_container_width=True)
+        #layers = plotbox(df)
+    #plot.altair_chart(layers,use_container_width=True)
+if st.button('Joseph "Slipped"'):
+    st.video("./resources/josephslipped.mp4")

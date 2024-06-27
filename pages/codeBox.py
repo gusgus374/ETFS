@@ -16,6 +16,7 @@ if 'old_code' not in st.session_state:
      st.session_state['old_code'] = None
 
 st.title("footyLab codeBox")
+st.subheader("Don't forget to save your code!!")
 with st.sidebar:
     file = st.file_uploader("upload python script",type=[".py"])
 

@@ -23,9 +23,9 @@ if "user" not in st.session_state:
 #if "password" not in st.session_state:
 #     st.session_state.password = None
 
-ROLES = [None, "Ayden", "AyMarri","Aynira","Azy'rion","Breionna","Ceslee","Dalton","Elhaj","Elias","Garrett","Imani","Jairus","Jamiya","Joseph","Leo","Maurice","Michya","Nevaeh","Olivia","Raye","Ronnie","Samantha","Zane","Gus","Admin","Mrs. Summey"]
-allroles = ["Ayden", "AyMarri","Aynira","Azy'rion","Breionna","Ceslee","Dalton","Elhaj","Elias","Garrett","Imani","Jairus","Jamiya","Joseph","Leo","Maurice","Michya","Nevaeh","Olivia","Raye","Ronnie","Samantha","Zane","Gus","Mrs. Summey","Admin"]
-playersdeployed = ["Ayden", "AyMarri","Azy'rion","Breionna","Elias","Jamiya","Leo","Samantha","Gus"]
+ROLES = [None, "Ayden", "AyMarri","Aynira","Azy'rion","Breionna","Ceslee","Dalton","Elhaj","Elias","Garrett","Imani","Jairus","Jamiya","Joseph","Leo","Maurice","Michya","Nevaeh","Gabby","Raye","Ronnie","Samantha","Zane","Gus","Admin","Mrs. Summey"]
+allroles = ["Ayden", "AyMarri","Aynira","Azy'rion","Breionna","Ceslee","Dalton","Elhaj","Elias","Garrett","Imani","Jairus","Jamiya","Joseph","Leo","Maurice","Michya","Nevaeh","Gabby","Raye","Ronnie","Samantha","Zane","Gus","Mrs. Summey","Admin"]
+playersdeployed = ["Ayden", "AyMarri","Azy'rion","Breionna","Elias","Jamiya","Leo","Samantha","Imani","Ceslee","Jairus","Raye","Nevaeh","Garrett","Gus"]
 def login():
 
     st.header("Log in")
@@ -63,7 +63,7 @@ coachGus = st.Page(
 classpage = st.Page(
     "./pages/Class_Page.py",
     title="Class Page",
-    icon=":material/healing:",
+    icon=":material/healing:"
 )
 codeBox = st.Page(
     "./pages/codeBox.py", title="", icon=":material/handyman:",default=(user not in playersdeployed)
@@ -85,17 +85,27 @@ jamiya = st.Page("./roster/jamiya.py", title="Jamiya", icon=":material/security:
 
 eli = st.Page("./roster/eli.py", title="Eli", icon=":material/security:",default=(user=="Elias"))
 
+imani = st.Page("./roster/imani.py", title="Imani", icon=":material/security:",default=(user=="Imani"))
+
+ceslee = st.Page("./roster/ceslee.py", title="Ceecee", icon=":material/security:",default=(user=="Ceslee"))
+
+jairus = st.Page("./roster/jairus.py", title="Jairus", icon=":material/security:",default=(user=="Jairus"))
+
+raye = st.Page("./roster/raye.py", title="Raye", icon=":material/security:",default=(user=="Raye"))
+
+nevaeh = st.Page("./roster/nevaeh.py", title="Navaeh", icon=":material/security:",default=(user=="Nevaeh"))
+
 account_pages = [logout_page, settings]
 explore_pages = [BootRoom, prosoccer]
 build_pages = [codeBox, coachGus]
-deployed_pages = [classpage, ayden, samantha, aymarri, breionna, jamiya, eli]
+deployed_pages = [classpage, ayden, samantha, aymarri, breionna, jamiya, eli, imani, ceslee, jairus, raye, nevaeh]
 
 page_dict = {}
 if (st.session_state.user in allroles):
     page_dict["Explore"] = explore_pages
 if (st.session_state.user in allroles):
     page_dict["Build"] = build_pages
-if (st.session_state.user in playersdeployed):
+if (st.session_state.user in allroles):
     page_dict["Deployed"] = deployed_pages
 
 if len(page_dict) > 0:
@@ -123,4 +133,5 @@ with col1:
                 )
 with col2:
       st.page_link("https://oneknoxcollective.notion.site/ETFS-Soccer-Scientists-8d132bcda49c4385b0a5c41adef5ebb8?pvs=4", label="ETFS Soccer Scientist Home Page", icon="🏡")
+      st.page_link("https://streamlit-emoji-shortcodes-streamlit-app-gwckff.streamlit.app/", label="Emoji Codes!", icon="😎")
       
