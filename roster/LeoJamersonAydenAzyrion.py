@@ -8,7 +8,7 @@ file = st.file_uploader("Pick an MP3 file")
 st.audio(file)
 st.title("Leo,azyrion,jamerson,Ayden")
 
-with st.expander("Show Leo, Jamerson, and Ayden's code"):
+with st.expander("Show Leo and Jamerson's code"):
     st.code(
         body='''
 import streamlit as st

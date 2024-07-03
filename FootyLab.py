@@ -73,7 +73,9 @@ prosoccer = st.Page(
     title="Pro Soccer Data",
     icon=":material/person_add:",
 )
-ayden = st.Page("./roster/LeoJamersonAydenAzyrion.py", title="Music Boys", icon=":material/security:",default=(user=="Ayden" or user == "Leo" or user == "Azy'rion" or user == "Jamerson"))
+ayden = st.Page("./roster/ayden.py", title="Ayden", icon=":material/security:",default=(user=="Ayden"))
+
+LeoJamerson = st.Page("./roster/LeoJamersonAydenAzyrion.py", title="Music Boys", icon=":material/security:",default=(user == "Leo" or user == "Azy'rion" or user == "Jamerson"))
 
 samantha = st.Page("./roster/samantha.py", title="Samantha", icon=":material/security:",default=(user=="Samantha"))
 
@@ -95,10 +97,20 @@ raye = st.Page("./roster/raye.py", title="Raye", icon=":material/security:",defa
 
 nevaeh = st.Page("./roster/nevaeh.py", title="Navaeh", icon=":material/security:",default=(user=="Nevaeh"))
 
+garrett = st.Page("./roster/garrett.py", title="Garrett", icon=":material/security:",default=(user=="Garrett"))
+
+aynira = st.Page("./roster/aynira.py", title="Aynira", icon=":material/security:",default=(user=="Aynira"))
+
+maurice = st.Page("./roster/maurice.py", title="Maurice", icon=":material/security:",default=(user=="Maurice"))
+
+michya = st.Page("./roster/michya.py", title="Michya", icon=":material/security:",default=(user=="Michya"))
+
+motion = st.Page("./roster/motion_productions.py", title="Motion Productions", icon=":material/security:",default=(user=="Joseph" or user == "Ronnie"))
+
 account_pages = [logout_page, settings]
 explore_pages = [BootRoom, prosoccer]
 build_pages = [codeBox, coachGus]
-deployed_pages = [classpage, ayden, samantha, aymarri, breionna, jamiya, eli, imani, ceslee, jairus, raye, nevaeh]
+deployed_pages = [classpage, ayden, samantha, aymarri, breionna, jamiya, eli, imani, ceslee, jairus, raye, nevaeh, garrett, aynira, maurice, michya, motion]
 
 page_dict = {}
 if (st.session_state.user in allroles):

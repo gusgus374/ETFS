@@ -112,7 +112,7 @@ with st.expander("~~spellbooks~~ libraries used"):
               import streamlit as st
               import pandas as pd
               import os
-              import path
+              import pathlib
               ''',
               language="python"
        )

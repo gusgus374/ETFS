@@ -1,27 +1,27 @@
 import streamlit as st
+import streamlit.components.v1 as components
 
-st.title("lets play a game..")
+st.title("Hi I'm Samantha, and I love sleep")
 
-if st.button("click 2 start.."):
-    st.header("u have a set time")
-    st.balloons()
-    st.time_input("timer")
+st.header("I sleep on my side")
 
-st.slider("pick a number", 0, 30)
+if st.button("See an example"):
+    st.write("test")
+    components.iframe("https://content.gallup.com/origin/gallupinc/GallupSpaces/Production/Cms/POLL/vdu8ggo1k0qxeo2vn9zoka.jpg", width = 900)
 
 with st.expander("Show Samantha's code"):
     st.code(
         body='''
 import streamlit as st
+import streamlit.components.v1 as components
 
-st.title("lets play a game..")
+st.title("Hi I'm Samantha, and I love sleep")
 
-if st.button("click 2 start.."):
-    st.header("u have a set time")
-    st.balloons()
-    st.time_input("timer")
+st.header("I sleep on my side")
 
-st.slider("pick a number", 0, 30)
+if st.button("See an example"):
+    st.write("test")
+    components.iframe("https://content.gallup.com/origin/gallupinc/GallupSpaces/Production/Cms/POLL/vdu8ggo1k0qxeo2vn9zoka.jpg", width = 900)
         ''',
         language="python",
         line_numbers=True
