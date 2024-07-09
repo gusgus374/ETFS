@@ -113,10 +113,11 @@ build_pages = [codeBox, coachGus]
 deployed_pages = [classpage, ayden,LeoJamerson, samantha, aymarri, breionna, jamiya, eli, imani, ceslee, jairus, raye, nevaeh, garrett, aynira, maurice, michya, motion]
 
 page_dict = {}
-if (st.session_state.user in allroles):
-    page_dict["Explore"] = explore_pages
+
 if (st.session_state.user in allroles):
     page_dict["Build"] = build_pages
+if (st.session_state.user in allroles):
+    page_dict["Explore"] = explore_pages
 if (st.session_state.user in allroles):
     page_dict["Deployed"] = deployed_pages
 

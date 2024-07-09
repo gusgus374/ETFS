@@ -7,28 +7,6 @@ import altair as alt
 import os
 import pathlib
 
-#st.set_page_config(
-#    page_title="ETFS Class Page",
-#    page_icon="./resources/DR_favicon.png",
-#    layout="wide",
-#    initial_sidebar_state="collapsed",
-#    menu_items={
-#        'Get Help': 'https://datarook.com/',
-#        'Report a bug': "https://datarook.com/#copyright",
-#        'About': "# This is a version of FootyLab created for the 2024 East Tennessee Freedom School. Contact gus@datarook.com to learn more."
-#    }
-#)
-
-#st.sidebar.page_link("FootyLab.py", label=":seedling: Home Page ")
-#st.sidebar.page_link("pages/1_BootRoom.py", label=":star: Boot Room ")
-#st.sidebar.page_link("pages/codeBox.py", label=":computer: CODE BOX ")
-#st.sidebar.page_link("pages/coachGus.py", label=":pushpin: Coach's Examples ")
-#st.sidebar.page_link("pages/Class_Page.py", label=":bar_chart: Class Page ")
-#st.sidebar.page_link("pages/2_US_Pro_Soccer.py", label=":earth_americas: Pro Soccer Data :soccer:",disabled=False)
-#with st.sidebar:
-#    st.divider()
-#st.logo("./resources/footyLab_v2_96_NB.png",link="https://datarook.com/")
-
 def plotbox(df):
     domain = ['Green', "Blue", "Red"]
     range_ = ['chartreuse', 'blue', 'red']
@@ -172,3 +150,28 @@ for i,r in df.iterrows():
     #plot.altair_chart(layers,use_container_width=True)
 if st.button('Joseph "Slipped"'):
     st.video("./resources/josephslipped.mp4")
+
+#uploaded_file = st.file_uploader("Choose a data file")
+#if uploaded_file is not None:
+        # use the Pandas read_csv method to read the gps_data and turn into a dataframe
+#        all_data = pd.read_csv(uploaded_file)
+        # keep only the rows were the column 'Split Name' has a value equal to 'all'
+ #       game_data = all_data.loc[all_data['Split Name'] == "game"]
+        #game_data = game_data.loc[game_data['Tags'] == 'game']
+  #      game_data = game_data.set_index('Player Name', drop=False)
+        #game_data["day"] = game_data["Date"] - 45150
+        #game_data = game_data.loc[game_data["day"] > 0]
+   #     with st.expander(label="View Your Data",expanded=False):
+                #display the uploaded data
+    #            st.write(game_data)
+     #   variable_x = st.selectbox("Pick Your X Variable!",game_data.columns.to_list(),1)
+      #  variable_y = st.selectbox("Pick Your Y Variable!",game_data.columns.to_list(),8)
+       # variable_size = st.selectbox("Pick Your Size Variable!",game_data.columns.to_list(),9)
+#if uploaded_file is not None:
+ #   chart = alt.Chart(game_data).mark_circle().encode(
+  #      x=variable_x,
+   #     y=variable_y,
+    #    size=alt.Size(variable_size,legend=None),
+     #   color=alt.Color('Player Name',legend=None),
+      #  tooltip=["Player Name","Session Title",]).properties(height=500).interactive()
+    #st.altair_chart(chart, theme="streamlit", use_container_width=True)
