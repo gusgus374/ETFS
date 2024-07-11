@@ -6,6 +6,7 @@ import altair as alt
 #import time 
 import os
 import pathlib
+import streamlit.components.v1 as components
 
 def plotbox(df):
     domain = ['Green', "Blue", "Red"]
@@ -49,7 +50,13 @@ def plotbox(df):
 
     return f+e+d
 #st.title("NEW TEAMS FOR TUESDAY JUNE 18th.")
-st.title("CLASS PAGE")
+st.warning("Do you have a video clip highlight on your page? Must use an mp4 file!", icon="❓")
+st.warning("Do you have a graph showing some data over time on your page?", icon="❓")
+st.warning("Do you have something unique to you on your page?", icon="❓")
+st.title("CLASS PAGE - example for finale")
+st.code('''
+st.title("CLASS PAGE - example for finale")
+        ''')
 #Power Play
 blueTeam1 = ["Azy'rion","AyMarri","Ayden","Dalton","Jamerson","Garrett","Jamiya","Jarius","Zane","Raye","Nevaeh","Ronnie"]
 greenTeam1 = ["AyNirra","Elias","Elhaj","Ceslee","Imani","Michaya","Gabi","Samantha"]
@@ -148,8 +155,21 @@ for i,r in df.iterrows():
         df.at[j,"Total votes"] = rr["Blue Votes"] + rr["Green Votes"]
         #layers = plotbox(df)
     #plot.altair_chart(layers,use_container_width=True)
+st.header("Python Libraries used:")
+st.code('''
+import streamlit as st
+import pandas as pd
+import os
+import pathlib
+import altair as alt
+import streamlit.components.v1 as components
+        ''')
 if st.button('Joseph "Slipped"'):
     st.video("./resources/josephslipped.mp4")
+st.code('''
+if st.button('Joseph "Slipped"'):
+    st.video("./resources/josephslipped.mp4")
+        ''')
 
 #uploaded_file = st.file_uploader("Choose a data file")
 #if uploaded_file is not None:
@@ -175,3 +195,56 @@ if st.button('Joseph "Slipped"'):
      #   color=alt.Color('Player Name',legend=None),
       #  tooltip=["Player Name","Session Title",]).properties(height=500).interactive()
     #st.altair_chart(chart, theme="streamlit", use_container_width=True)
+with st.echo("below"):
+    st.header("Graph example")
+
+    file_location = os.path.join(str(pathlib.Path().resolve()), './data/last30days_GPS.csv')
+
+    with open(file_location) as file:
+            data = pd.read_csv(file)
+
+    ETFS_data = pd.DataFrame(data)
+
+    SLIdata = ETFS_data.loc[(ETFS_data["Player Name"] == "Mr. Josh - ETFS") | (ETFS_data["Player Name"] == "Ms. Mona - ETFS") | (ETFS_data["Player Name"] == "Mr. Jaylen - ETFS")]
+    with st.expander("See the dataframe as a table"):
+        st.dataframe(SLIdata)
+
+    lines = alt.Chart(SLIdata, title="My interactive chart").mark_line().encode(
+            x="Session Title:T",#the little ":T" after "Session Title" tells altair that this data is a time or date value
+            y="Top Speed (m/s)",
+            color="Player Name"
+    )
+
+    circles = alt.Chart(SLIdata).mark_circle().encode(
+            x="Session Title:T",
+            y="Top Speed (m/s)",
+            color="Player Name",
+            size=alt.Size("Distance (km)",legend=None),
+            tooltip=["Player Name","Session Title","Top Speed (m/s)", "Split Name", "Distance (km)"]
+    )
+
+    combined_chart = (lines + circles).interactive()
+    st.altair_chart(combined_chart, use_container_width=True)
+
+st.header("_Something Unique_")
+with st.echo("below"):
+    st.header("Soccer... and Data... *and* Science?")
+    st.write("Hi I'm Coach Gus and I love soccer and physics. I enjoy teaching others about my passions and believe learning math and science does not have to be boring!")
+    st.write("My favorite club team in England is :red[Liverpool FC] and I admire how their data science team combined physics knowledge with soccer knowledge to help the coaching staff better analyze the game.")
+    st.subheader("One of the biggest soccer clubs in the world, Liverpool FC, hired particle physicists to help improve their soccer team")
+
+    col1, col2 = st.columns(2)
+    col1.write("They used their knowledge of charged particles and electric fields:")
+    col2.write("And combined it with soccer data to create this (known as the Pitch Control model):")
+    with col2:
+            iframe_src2 = "https://www.youtube.com/embed/Nc3uFWnPlsQ?si=pUx4ouf0EhWYMrVE"
+            components.iframe(iframe_src2,600,500)
+
+    with col1:
+            iframe_src = "https://phet.colorado.edu/sims/html/charges-and-fields/latest/charges-and-fields_en.html"
+            components.iframe(iframe_src,height=500)
+            st.caption("Hint: make sure to click the 'Voltage' checkbox then drag and drop the red and blue particels around")
+    st.subheader("The invention of the Pitch Control model helps coaches answer questions like:")
+    st.write(':orange["when is the right moment in the game to press and try to win the ball back?"]')
+    st.subheader("or")
+    st.write(':orange["in what areas of the field do our oppenents have a weakness we should attack?"]')
