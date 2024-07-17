@@ -3,6 +3,12 @@ import os
 import pathlib
 import streamlit as st
 
+import pandas as pd
+import os
+import pathlib
+import streamlit as st
+import altair as alt
+
 st.title("Welcome to AyMarri's Page!")
 
 st.subheader("to view my data just scroll down")
@@ -28,6 +34,7 @@ st.write("top speed chart (round to the nearest mph)")
 st.line_chart(aymarriData, x = "Session Title", y="Top Speed (m/s)")
 
 st.title("POP QUIZ!")
+score = 0
 
 if "number" not in st.session_state:
     st.session_state["number"] = 0
@@ -75,10 +82,45 @@ if st.session_state.number == 12:
 answer = st.session_state.number
 if answer == 13:
     st.write("CORRECT")
+    score += 1
 
+with st.expander("hmm, whats this?"):
+    st.caption('sh wkh frgh "lp dq hasoruhu" lqwr txhvwlrq')
+    st.write('I cant seem to figure out what this says...myabe we should use the link at the end of the page!')
 
+st.write('2.   how many power plays did I have on date 8,45,468?')
+answer2 = st.text_input("2.   how many power plays did I have on date 8 45,468? ")
+if answer2 == "2":
+    st.write('CORRECT')
+    score += 1
+else:
+    st.write('WRONG')
 
-st.write('2.   how many power plays did I have on date 45,468?')
+answer3 = st.text_input('3.   How much further (in meters) did I run on 7 45,461 than 8 45,468? ')
+if answer3 == "4.697":
+    st.write('CORRECT')
+    score += 1
+if answer3 == "im an explorer":
+    st.write("congrats!, youve earned you exploring lisence!")
+
+st.write('Final Question.')
+
+balloons = st.checkbox('balloons')
+if balloons:
+    st.write("CORRECT")
+    score += 1
+fire = st.checkbox('fire')
+if fire:
+    st.write('WRONG')
+snow = st.checkbox('snow')
+if snow:
+    st.write('WRONG')
+party_hat = st.checkbox('party hat')
+if party_hat:
+    st.write('WRONG')
+st.write("Congrats! You got", score, "questions out of 4 correct!" )
+st.caption('Note, clicking the "yay" button at the top of the page may result in reset quiz progress.')
+st.page_link("https://www.dcode.fr/caesar-cipher", label="this looks like a decoder...", icon="🔒")
 
 with st.expander("Show AyMarri's code"):
     st.code(
@@ -87,6 +129,7 @@ import pandas as pd
 import os
 import pathlib
 import streamlit as st
+import altair as alt
 
 st.title("Welcome to AyMarri's Page!")
 
@@ -113,6 +156,7 @@ st.write("top speed chart (round to the nearest mph)")
 st.line_chart(aymarriData, x = "Session Title", y="Top Speed (m/s)")
 
 st.title("POP QUIZ!")
+score = 0
 
 if "number" not in st.session_state:
     st.session_state["number"] = 0
@@ -160,10 +204,45 @@ if st.session_state.number == 12:
 answer = st.session_state.number
 if answer == 13:
     st.write("CORRECT")
+    score += 1
 
+with st.expander("hmm, whats this?"):
+    st.caption('sh wkh frgh "lp dq hasoruhu" lqwr txhvwlrq')
+    st.write('I cant seem to figure out what this says...myabe we should use the link at the end of the page!')
 
+st.write('2.   how many power plays did I have on date 8,45,468?')
+answer2 = st.text_input("2.   how many power plays did I have on date 8 45,468? ")
+if answer2 == "2":
+    st.write('CORRECT')
+    score += 1
+else:
+    st.write('WRONG')
 
-st.write('2.   how many power plays did I have on date 45,468?')
+answer3 = st.text_input('3.   How much further (in meters) did I run on 7 45,461 than 8 45,468? ')
+if answer3 == "4.697":
+    st.write('CORRECT')
+    score += 1
+if answer3 == "im an explorer":
+    st.write("congrats!, youve earned you exploring lisence!")
+
+st.write('Final Question.')
+
+balloons = st.checkbox('balloons')
+if balloons:
+    st.write("CORRECT")
+    score += 1
+fire = st.checkbox('fire')
+if fire:
+    st.write('WRONG')
+snow = st.checkbox('snow')
+if snow:
+    st.write('WRONG')
+party_hat = st.checkbox('party hat')
+if party_hat:
+    st.write('WRONG')
+st.write("Congrats! You got", score, "questions out of 4 correct!" )
+st.caption('Note, clicking the "yay" button at the top of the page may result in reset quiz progress.')
+st.page_link("https://www.dcode.fr/caesar-cipher", label="this looks like a decoder...", icon="🔒")
         ''',
         language="python",
         line_numbers=True
