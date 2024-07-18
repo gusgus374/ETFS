@@ -145,6 +145,7 @@ with col1:
                   mime="text/csv"
                 )
 with col2:
-      st.page_link("https://oneknoxcollective.notion.site/ETFS-Soccer-Scientists-8d132bcda49c4385b0a5c41adef5ebb8?pvs=4", label="ETFS Soccer Scientist Home Page", icon="🏡")
+      st.page_link("https://www.notion.so/oneknoxcollective/349510a00d874fb998d470de04118fea?v=6b53036549e541689fa5d606eb762c2d", label="ETFS Soccer Scientists", icon="🏡")
       st.page_link("https://streamlit-emoji-shortcodes-streamlit-app-gwckff.streamlit.app/", label="Emoji Codes!", icon="😎")
+      st.page_link("https://app.veo.co/clubs/datarook-academy/teams/soccer-lab/#recordings", label="Game Footage", icon="🎥")
       
