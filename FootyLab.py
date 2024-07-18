@@ -52,24 +52,24 @@ logout_page = st.Page(logout, title="Log out", icon=":material/logout:")
 settings = st.Page("settings.py", title="Settings", icon=":material/settings:")
 
 BootRoom = st.Page(
-    "./pages/1_BootRoom.py",
+    "./coach/1_BootRoom.py",
     title="BootRoom",
     icon=":material/help:",
     default=(user == "Admin"),
 )
 coachGus = st.Page(
-    "./pages/coachGus.py", title="Coach's Examples", icon=":material/bug_report:",default=(user == "Gus")
+    "./coach/coachGus.py", title="Coach's Examples", icon=":material/bug_report:",default=(user == "Gus")
 )
 classpage = st.Page(
-    "./pages/Class_Page.py",
+    "./coach/Class_Page.py",
     title="Class Page",
     icon=":material/healing:"
 )
 codeBox = st.Page(
-    "./pages/codeBox.py", title="", icon=":material/handyman:",default=(user not in playersdeployed)
+    "./coach/codeBox.py", title="", icon=":material/handyman:",default=(user not in playersdeployed)
 )
 prosoccer = st.Page(
-    "./pages/2_US_Pro_Soccer.py",
+    "./coach/2_US_Pro_Soccer.py",
     title="Pro Soccer Data",
     icon=":material/person_add:",
 )
