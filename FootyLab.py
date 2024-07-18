@@ -25,7 +25,7 @@ if "user" not in st.session_state:
 
 ROLES = [None, "Ayden", "AyMarri","Aynira","Azy'rion","Breionna","Ceslee","Dalton","Elhaj","Elias","Garrett","Imani","Jairus","Jamiya","Joseph","Leo","Maurice","Michya","Nevaeh","Gabby","Raye","Ronnie","Samantha","Zane","Gus","Admin","Mrs. Summey"]
 allroles = ["Ayden", "AyMarri","Aynira","Azy'rion","Breionna","Ceslee","Dalton","Elhaj","Elias","Garrett","Imani","Jairus","Jamiya","Joseph","Leo","Maurice","Michya","Nevaeh","Gabby","Raye","Ronnie","Samantha","Zane","Gus","Mrs. Summey","Admin"]
-playersdeployed = ["Ayden", "AyMarri","Azy'rion","Breionna","Elias","Jamiya","Leo","Samantha","Imani","Ceslee","Jairus","Raye","Nevaeh","Garrett","Gus","Joseph","Ronnie","Elhaj","Maurice","Michya","Aynira"]
+playersdeployed = ["Ayden", "AyMarri","Breionna","Jamerson","Jamiya","Leo","Samantha","Imani","Ceslee","Jairus","Raye","Nevaeh","Garrett","Gus","Joseph","Ronnie","Elhaj","Maurice","Michya","Aynira"]
 def login():
 
     st.header("Log in")
@@ -75,7 +75,7 @@ prosoccer = st.Page(
 )
 ayden = st.Page("./roster/ayden.py", title="Ayden", icon=":material/security:",default=(user=="Ayden"))
 
-LeoJamerson = st.Page("./roster/LeoJamersonAydenAzyrion.py", title="Music Boys", icon=":material/security:",default=(user == "Leo" or user == "Azy'rion" or user == "Jamerson"))
+LeoJamerson = st.Page("./roster/LeoJamersonAydenAzyrion.py", title="Music Boys", icon=":material/security:",default=(user == "Leo" or user == "Jamerson"))
 
 samantha = st.Page("./roster/samantha.py", title="Samantha", icon=":material/security:",default=(user=="Samantha"))
 
@@ -85,7 +85,7 @@ breionna = st.Page("./roster/breionna.py", title="Breionna", icon=":material/sec
 
 jamiya = st.Page("./roster/jamiya.py", title="Jamiya", icon=":material/security:",default=(user=="Jamiya"))
 
-eli = st.Page("./roster/eli.py", title="Eli", icon=":material/security:",default=(user=="Elias"))
+#eli = st.Page("./roster/eli.py", title="Eli", icon=":material/security:",default=(user=="Elias"))
 
 imani = st.Page("./roster/imani.py", title="Imani", icon=":material/security:",default=(user=="Imani"))
 
@@ -110,7 +110,7 @@ motion = st.Page("./roster/motion_productions.py", title="Motion Productions", i
 account_pages = [logout_page, settings]
 explore_pages = [BootRoom, prosoccer]
 build_pages = [codeBox, coachGus]
-deployed_pages = [classpage, ayden,LeoJamerson, samantha, aymarri, breionna, jamiya, eli, imani, ceslee, jairus, raye, nevaeh, garrett, aynira, maurice, michya, motion]
+deployed_pages = [classpage, ayden,LeoJamerson, samantha, aymarri, breionna, jamiya, imani, ceslee, jairus, raye, nevaeh, garrett, aynira, maurice, michya, motion]
 
 page_dict = {}
 
