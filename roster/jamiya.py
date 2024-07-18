@@ -44,6 +44,9 @@ st.write("top speed chart (round to the nearest mph)")
 
 st.line_chart(jamiyaData, x = "Session Title", y="Top Speed (m/s)")
 
+with st.expander("My great defense"):
+     st.video("./resources/Raye_Jamiya_Defense.mp4")
+
 with st.expander("Show Jamiya's code"):
     st.code(
         body='''

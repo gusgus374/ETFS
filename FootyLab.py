@@ -65,6 +65,13 @@ classpage = st.Page(
     title="Class Page",
     icon=":material/healing:"
 )
+
+girlspage = st.Page(
+    "./coach/girls.py",
+    title="Girls Page",
+    icon=":material/healing:"
+)
+
 codeBox = st.Page(
     "./coach/codeBox.py", title="", icon=":material/handyman:",default=(user not in playersdeployed)
 )
@@ -73,7 +80,7 @@ prosoccer = st.Page(
     title="Pro Soccer Data",
     icon=":material/person_add:",
 )
-ayden = st.Page("./roster/ayden.py", title="Ayden", icon=":material/security:",default=(user=="Ayden"))
+#ayden = st.Page("./roster/ayden.py", title="Ayden", icon=":material/security:",default=(user=="Ayden"))
 
 LeoJamerson = st.Page("./roster/LeoJamersonAydenAzyrion.py", title="Music Boys", icon=":material/security:",default=(user == "Leo" or user == "Jamerson"))
 
@@ -86,6 +93,8 @@ breionna = st.Page("./roster/breionna.py", title="Breionna", icon=":material/sec
 jamiya = st.Page("./roster/jamiya.py", title="Jamiya", icon=":material/security:",default=(user=="Jamiya"))
 
 #eli = st.Page("./roster/eli.py", title="Eli", icon=":material/security:",default=(user=="Elias"))
+
+elhaj = st.Page("./roster/elhaj.py", title="Elhaj", icon=":material/security:",default=(user=="Elias"))
 
 imani = st.Page("./roster/imani.py", title="Imani", icon=":material/security:",default=(user=="Imani"))
 
@@ -110,7 +119,7 @@ motion = st.Page("./roster/motion_productions.py", title="Motion Productions", i
 account_pages = [logout_page, settings]
 explore_pages = [BootRoom, prosoccer]
 build_pages = [codeBox, coachGus]
-deployed_pages = [classpage, ayden,LeoJamerson, samantha, aymarri, breionna, jamiya, imani, ceslee, jairus, raye, nevaeh, garrett, aynira, maurice, michya, motion]
+deployed_pages = [classpage, girlspage,LeoJamerson, elhaj, samantha, aymarri, breionna, jamiya, imani, ceslee, jairus, raye, nevaeh, garrett, aynira, maurice, michya, motion]
 
 page_dict = {}
 

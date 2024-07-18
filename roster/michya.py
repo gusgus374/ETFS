@@ -7,6 +7,9 @@ if st.button("Pop"):
 if st.button("snow day"):
   st.snow()
 
+with st.expander("Michya's Goal"):
+   st.video("./resources/michya_goal_cece_skips.mp4")
+
 with st.expander("Show Michya's code"):
     st.code(
         '''
