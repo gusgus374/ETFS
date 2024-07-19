@@ -62,6 +62,9 @@ st.altair_chart(combined_chart, use_container_width=True)
 if st.button("Jairus"):
      st.video("./resources/jairus_speed.mp4")
 
+if st.button("Ayden's Slide Tackle"):
+    st.video("./resources/ayden_slidetackle.mp4")
+
 with st.expander("Show Leo and Jamerson's code"):
     st.code(
         body='''

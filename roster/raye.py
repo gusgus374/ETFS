@@ -10,7 +10,7 @@ st.title("Five below commercial")
 
 with st.expander("Click Me For An Awesomely Icy Deal"):
     #st.snow()
-    correct = "solved"
+    correct = "pencil"
     st.title("SOLVE THIS RIDDLE OR ELSE")
     st.header("you have one minute")
     st.subheader("I am taken from a mine, and shut up in a wooden case, from which I am never released, and yet I am used by almost everybody. What am I?")
@@ -32,6 +32,9 @@ N = 1*60
 #    mm, ss = secs//60, secs%60
 #    ph.metric("Countdown", f"{mm:02d}:{ss:02d}")
 #    time.sleep(1)
+
+if st.button("Highlight"):
+    st.video("./resources/Raye_Jamiya_Defense.mp4")
 
 with st.expander("Show Raye's code"):
     st.code(
@@ -70,6 +73,8 @@ N = 1*60
 #    mm, ss = secs//60, secs%60
 #    ph.metric("Countdown", f"{mm:02d}:{ss:02d}")
 #    time.sleep(1)
+if st.button("Highlight"):
+    st.video("./resources/Raye_Jamiya_Defense.mp4")
         ''',
         language="python",
         line_numbers=True

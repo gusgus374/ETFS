@@ -119,7 +119,7 @@ motion = st.Page("./roster/motion_productions.py", title="Motion Productions", i
 account_pages = [logout_page, settings]
 explore_pages = [BootRoom, prosoccer]
 build_pages = [codeBox, coachGus]
-deployed_pages = [classpage, girlspage,LeoJamerson, elhaj, samantha, aymarri, breionna, jamiya, imani, ceslee, jairus, raye, nevaeh, garrett, aynira, maurice, michya, motion]
+deployed_pages = [classpage ,LeoJamerson, elhaj, samantha, aymarri, breionna, jamiya, imani, ceslee, jairus, raye, nevaeh, garrett, aynira, maurice, michya, motion]
 
 page_dict = {}
 
