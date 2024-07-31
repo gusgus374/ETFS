@@ -13,9 +13,13 @@ import streamlit.components.v1 as components
 
 st.set_page_config(
     page_title="footyLab • Play to Learn | DataRook, Inc.",
-    page_icon="./resources/DR_favicon.png",
+    page_icon="./resources/footylab_v2_icon.png",
     layout="wide",
     initial_sidebar_state="collapsed",
+    menu_items={
+        'Get Help': 'https://datarook.com/contact',
+        'About': "## This is a version of footyLab created for East Tennesse Freedom Schools in Summer 2024. Contact gus@datarook.com to learn more"
+    }
 )
 
 if "user" not in st.session_state:
@@ -82,7 +86,7 @@ prosoccer = st.Page(
 )
 #ayden = st.Page("./roster/ayden.py", title="Ayden", icon=":material/security:",default=(user=="Ayden"))
 
-LeoJamerson = st.Page("./roster/LeoJamersonAydenAzyrion.py", title="Music Boys", icon=":material/security:",default=(user == "Leo" or user == "Jamerson"))
+LeoJamerson = st.Page("./roster/LeoJamersonAydenAzyrion.py", title="Music Boys", icon=":material/security:",default=(user == "Leo" or user == "Jairus" or user== "Ayden" or user == "Zane"))
 
 samantha = st.Page("./roster/samantha.py", title="Samantha", icon=":material/security:",default=(user=="Samantha"))
 
@@ -100,7 +104,7 @@ imani = st.Page("./roster/imani.py", title="Imani", icon=":material/security:",d
 
 ceslee = st.Page("./roster/ceslee.py", title="Ceecee", icon=":material/security:",default=(user=="Ceslee"))
 
-jairus = st.Page("./roster/jairus.py", title="Jairus", icon=":material/security:",default=(user=="Jairus"))
+jairus = st.Page("./roster/jairus.py", title="Jairus", icon=":material/security:")
 
 raye = st.Page("./roster/raye.py", title="Raye", icon=":material/security:",default=(user=="Raye"))
 
@@ -110,11 +114,11 @@ garrett = st.Page("./roster/garrett.py", title="Garrett", icon=":material/securi
 
 aynira = st.Page("./roster/aynira.py", title="Aynira", icon=":material/security:",default=(user=="Aynira"))
 
-maurice = st.Page("./roster/maurice.py", title="Maurice", icon=":material/security:",default=(user=="Maurice"))
+maurice = st.Page("./roster/maurice.py", title="Maurice", icon=":material/security:")
 
 michya = st.Page("./roster/michya.py", title="Michya", icon=":material/security:",default=(user=="Michya"))
 
-motion = st.Page("./roster/motion_productions.py", title="Motion Productions", icon=":material/security:",default=(user=="Joseph" or user == "Ronnie"))
+motion = st.Page("./roster/motion_productions.py", title="Motion Productions", icon=":material/security:",default=(user=="Joseph" or user == "Ronnie" or user == "Jamerson" or user == "Maurice"))
 
 account_pages = [logout_page, settings]
 explore_pages = [BootRoom, prosoccer]
@@ -137,7 +141,7 @@ else:
 
 pg.run()
 
-st.logo("./resources/footyLab_v2_96_NB.png",link="https://datarook.com/")
+st.logo("./resources/footylab_v2_horizontal.png",link="https://datarook.com/",icon_image="./resources/footylab_v2_icon.png")
 
 st.divider()
 st.header("Links and Resources")
